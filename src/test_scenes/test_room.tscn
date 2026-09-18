@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://hi10d8yc4oxf"]
+
+[ext_resource type="PackedScene" uid="uid://dqexnyj5tja1l" path="res://src/dungeon/player/dungeon_player.tscn" id="1_ncluu"]
+
+[node name="TestRoot" type="Node3D" unique_id=557933789]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1451891213]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7993774, 0, 0)
+use_collision = true
+collision_layer = 8
+collision_mask = 15
+size = Vector3(20, 0.1, 20)
+
+[node name="DungeonPlayer" parent="." unique_id=1457069709 instance=ExtResource("1_ncluu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0046635, 0)

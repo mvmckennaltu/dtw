@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://dqexnyj5tja1l"]
+
+[ext_resource type="Script" uid="uid://b11qg1p7y2udc" path="res://src/dungeon/player/player_movement.gd" id="1_602fi"]
+[ext_resource type="Texture2D" uid="uid://javh14gdomb4" path="res://icon.svg" id="1_mlsoe"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_j2fop"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="4_35vc5"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="5_w8c53"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sko5i"]
+size = Vector3(0.5, 1, 0.5)
+
+[sub_resource type="Resource" id="Resource_j2fop"]
+script = ExtResource("5_w8c53")
+
+[node name="DungeonPlayer" type="CharacterBody3D" unique_id=1457069709]
+collision_mask = 15
+script = ExtResource("1_602fi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1654678554]
+shape = SubResource("BoxShape3D_sko5i")
+
+[node name="Sprite3D" type="Sprite3D" parent="CollisionShape3D" unique_id=392496062]
+transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 0, 0)
+texture = ExtResource("1_mlsoe")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=405368667]
+physics_interpolation_mode = 1
+transform = Transform3D(1, 0, 0, 0, 0.81915206, 0.5735764, 0, -0.5735764, 0.81915206, 0, 3.867882, 4.0957603)
+top_level = true
+
+[node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1674350583]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("3_j2fop")
+metadata/_custom_type_script = "uid://bd046eokvcnu2"
+
+[node name="PhantomCamera3D" type="Node3D" parent="." unique_id=1681599139 node_paths=PackedStringArray("follow_target")]
+transform = Transform3D(1, 0, 0, 0, 0.81915206, 0.5735764, 0, -0.5735764, 0.81915206, 0, 3.867882, 4.0957603)
+script = ExtResource("4_35vc5")
+follow_mode = 6
+follow_target = NodePath("..")
+tween_resource = SubResource("Resource_j2fop")
+follow_offset = Vector3(0, 1, 0)
+follow_distance = 5.0
+vertical_rotation_offset = 0.6108652381980153
+spring_length = 5.0
+align_transform_with_view = Callable()
+align_position_with_view = Callable()
+align_rotation_with_view = Callable()
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
