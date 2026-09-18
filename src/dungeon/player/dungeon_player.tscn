@@ -21,6 +21,7 @@ shape = SubResource("BoxShape3D_sko5i")
 
 [node name="Sprite3D" type="Sprite3D" parent="CollisionShape3D" unique_id=392496062]
 transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 0, 0)
+billboard = 1
 texture = ExtResource("1_mlsoe")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=405368667]

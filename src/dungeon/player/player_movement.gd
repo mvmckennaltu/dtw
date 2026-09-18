@@ -7,10 +7,10 @@ var current_speed: float
 const CAMERA_ROTATION_SPEED := 120.0
 @onready var camera: Camera3D = get_viewport().get_camera_3d()
 @onready var _player_pcam: PhantomCamera3D = $PhantomCamera3D
-
+var is_locked = false
 func _ready() -> void:
 	#_player_pcam = owner.get_node("$PhantomCamera3D")
-	pass
+	_player_pcam.set_third_person_rotation_degrees(Vector3.ZERO)
 func _physics_process(delta: float) -> void:
 # Camera rotation
 	var rotation_change := 0.0
@@ -48,5 +48,5 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, current_speed)
 		velocity.z = move_toward(velocity.z, 0, current_speed)
-
+	
 	move_and_slide()

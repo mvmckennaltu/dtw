@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://upkbkmo67dk0"]
+
+[node name="Mainmenu" type="Control" unique_id=918889320]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=914968405]
+layout_mode = 0
+offset_top = 34.0
+offset_right = 98.0
+offset_bottom = 222.0
+
+[node name="Button" type="Button" parent="VBoxContainer" unique_id=1367839383]
+layout_mode = 2
+offset_transform_enabled = true
+text = "Skills"
+
+[node name="Button2" type="Button" parent="VBoxContainer" unique_id=413939195]
+layout_mode = 2
+offset_transform_enabled = true
+text = "Items"
+
+[node name="Button3" type="Button" parent="VBoxContainer" unique_id=1078391992]
+layout_mode = 2
+offset_transform_enabled = true
+text = "Equipment"
+
+[node name="Button4" type="Button" parent="VBoxContainer" unique_id=178649890]
+layout_mode = 2
+offset_transform_enabled = true
+text = "I. Abilities"
+
+[node name="Button5" type="Button" parent="VBoxContainer" unique_id=1276157351]
+layout_mode = 2
+offset_transform_enabled = true
+text = "Stats"
+
+[node name="Button6" type="Button" parent="VBoxContainer" unique_id=293378860]
+layout_mode = 2
+offset_transform_enabled = true
+text = "Save"
+
+[node name="Button7" type="Button" parent="VBoxContainer" unique_id=1224726171]
+layout_mode = 2
+offset_transform_enabled = true
+text = "Load"
