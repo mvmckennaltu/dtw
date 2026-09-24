@@ -6,10 +6,12 @@ extends CharacterBody3D
 var current_speed: float
 const CAMERA_ROTATION_SPEED := 120.0
 @onready var camera: Camera3D = get_viewport().get_camera_3d()
+#Grabs the player scene's integrated Phantom Camera
 @onready var _player_pcam: PhantomCamera3D = $PhantomCamera3D
 var is_locked = false
 func _ready() -> void:
 	#_player_pcam = owner.get_node("$PhantomCamera3D")
+	#Resets the Phantom Camera
 	_player_pcam.set_third_person_rotation_degrees(Vector3.ZERO)
 func _physics_process(delta: float) -> void:
 # Camera rotation
@@ -24,10 +26,11 @@ func _physics_process(delta: float) -> void:
 	if rotation_change != 0.0:
 		var camera_rotation = _player_pcam.get_third_person_rotation_degrees()
 		camera_rotation.y += rotation_change
+		#Ensures the angle wraps back to 0 after doing a full circle around the player
 		camera_rotation.y = wrapf(camera_rotation.y, 0.0, 360.0)
 		_player_pcam.set_third_person_rotation_degrees(camera_rotation)
 	var input_dir := Input.get_vector("dungeon_move_left", "dungeon_move_right", "dungeon_move_up", "dungeon_move_down")
-	
+	#Gets the camera's global transform to ensure the player always moves relative to the camera.
 	var forward := camera.global_transform.basis.z
 	var right := camera.global_transform.basis.x
 

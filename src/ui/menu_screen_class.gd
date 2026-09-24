@@ -1,4 +1,5 @@
 extends Control
+# Class that handles the main menu enum
 class_name MenuScreenClass
 
 enum MenuScreen {
@@ -6,7 +7,7 @@ enum MenuScreen {
 	SKILLS,
 	ITEMS,
 	EQUIPMENT,
-	SACCEL,
+	SACCEL, #"SAccel" is short for "Soul Accelerator"
 	STATS,
 	SAVE,
 	LOAD,
