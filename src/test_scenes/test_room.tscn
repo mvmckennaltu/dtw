@@ -1,15 +1,59 @@
 [gd_scene format=3 uid="uid://hi10d8yc4oxf"]
 
-[ext_resource type="PackedScene" uid="uid://dqexnyj5tja1l" path="res://src/dungeon/player/dungeon_player.tscn" id="1_ncluu"]
+[ext_resource type="PackedScene" uid="uid://dqexnyj5tja1l" path="res://scene/player/dungeon_player.tscn" id="1_ncluu"]
+[ext_resource type="PackedScene" uid="uid://bqp4ljtilbjec" path="res://scene/ui/mainmenu.tscn" id="2_ffy62"]
+[ext_resource type="PackedScene" uid="uid://1wwgf2v1j2t7" path="res://scene/enemy/dungeon_test_enemy.tscn" id="3_m5mbk"]
 
-[node name="TestRoot" type="Node3D" unique_id=557933789]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ffy62"]
+
+[node name="TestDungeon" type="Node3D" unique_id=557933789]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1451891213]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7993774, 0, 0)
+gi_mode = 2
 use_collision = true
 collision_layer = 8
 collision_mask = 15
 size = Vector3(20, 0.1, 20)
+material = SubResource("StandardMaterial3D_ffy62")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=64492183]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 0)
+use_collision = true
+collision_layer = 8
+collision_mask = 15
+size = Vector3(1, 10, 20)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="." unique_id=530155356]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0)
+use_collision = true
+collision_layer = 8
+collision_mask = 15
+size = Vector3(1, 10, 20)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="." unique_id=339700025]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.9922199, 0, 9.870432)
+use_collision = true
+collision_layer = 8
+collision_mask = 15
+size = Vector3(1, 10, 20)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="." unique_id=503608866]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.9922199, 0, -9.93195)
+use_collision = true
+collision_layer = 8
+collision_mask = 15
+size = Vector3(1, 10, 20)
 
 [node name="DungeonPlayer" parent="." unique_id=1457069709 instance=ExtResource("1_ncluu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0046635, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1002709687]
+follow_viewport_enabled = true
+
+[node name="Main_Menu" parent="CanvasLayer" unique_id=918889320 instance=ExtResource("2_ffy62")]
+visible = false
+remember_last_menu_option = true
+
+[node name="Node3D" parent="CanvasLayer" unique_id=114979189 instance=ExtResource("3_m5mbk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22052276, 0.87805444, -2.8297248)

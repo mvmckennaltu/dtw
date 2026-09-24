@@ -1,0 +1,290 @@
+[gd_scene format=3 uid="uid://bqp4ljtilbjec"]
+
+[ext_resource type="Script" uid="uid://uv38jbi4cvit" path="res://src/ui/mainmenu.gd" id="1_0khfh"]
+[ext_resource type="Script" uid="uid://cg7sglte42hsn" path="res://src/ui/menu_screen_identifier.gd" id="3_n6s1u"]
+
+[sub_resource type="Theme" id="Theme_sko5i"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_sko5i"]
+color = Color(0, 0, 0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_sko5i"]
+font_size = 24
+
+[node name="Main_Menu" type="Control" unique_id=918889320]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0khfh")
+
+[node name="MenuPanel" type="PanelContainer" parent="." unique_id=87549694]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.05
+anchor_bottom = 0.135
+offset_right = 300.0
+offset_bottom = 412.52
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuPanel" unique_id=1556372962]
+layout_mode = 2
+theme = SubResource("Theme_sko5i")
+theme_override_constants/separation = 12
+
+[node name="HSeparator" type="HSeparator" parent="MenuPanel/VBoxContainer" unique_id=1788314712]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_sko5i")
+
+[node name="Header" type="Label" parent="MenuPanel/VBoxContainer" unique_id=1932977623]
+layout_mode = 2
+offset_transform_enabled = true
+text = "Main Menu"
+label_settings = SubResource("LabelSettings_sko5i")
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="MenuPanel/VBoxContainer" unique_id=1092340823]
+layout_mode = 2
+
+[node name="Content" type="Control" parent="MenuPanel/VBoxContainer" unique_id=151964662]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TopMenu" type="Control" parent="MenuPanel/VBoxContainer/Content" unique_id=1349977051]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -136.09999
+offset_right = 136.90002
+offset_bottom = 40.0
+grow_horizontal = 2
+script = ExtResource("3_n6s1u")
+menu_label = "Main Menu"
+metadata/_custom_type_script = "uid://cg7sglte42hsn"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuPanel/VBoxContainer/Content/TopMenu" unique_id=474147531]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -125.0
+offset_right = 125.0
+offset_bottom = 31.0
+grow_horizontal = 2
+theme_override_constants/separation = 20
+
+[node name="SkillsButton" type="Button" parent="MenuPanel/VBoxContainer/Content/TopMenu/VBoxContainer" unique_id=1703353735]
+layout_mode = 2
+text = "Skills"
+
+[node name="ItemsButton" type="Button" parent="MenuPanel/VBoxContainer/Content/TopMenu/VBoxContainer" unique_id=2087167351]
+layout_mode = 2
+text = "Items"
+
+[node name="EquipmentButton" type="Button" parent="MenuPanel/VBoxContainer/Content/TopMenu/VBoxContainer" unique_id=1255350987]
+layout_mode = 2
+text = "Equipment"
+
+[node name="SAccelButton" type="Button" parent="MenuPanel/VBoxContainer/Content/TopMenu/VBoxContainer" unique_id=1248924727]
+layout_mode = 2
+text = "Soul Accelerator"
+
+[node name="StatsButton" type="Button" parent="MenuPanel/VBoxContainer/Content/TopMenu/VBoxContainer" unique_id=1314376297]
+layout_mode = 2
+text = "Stats"
+
+[node name="SaveButton" type="Button" parent="MenuPanel/VBoxContainer/Content/TopMenu/VBoxContainer" unique_id=1515438791]
+layout_mode = 2
+text = "Save"
+
+[node name="LoadButton" type="Button" parent="MenuPanel/VBoxContainer/Content/TopMenu/VBoxContainer" unique_id=1441038229]
+layout_mode = 2
+text = "Load"
+
+[node name="SysButton" type="Button" parent="MenuPanel/VBoxContainer/Content/TopMenu/VBoxContainer" unique_id=1356136065]
+layout_mode = 2
+text = "System"
+
+[node name="SkillsMenu" type="Control" parent="MenuPanel/VBoxContainer/Content" unique_id=99164324]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+script = ExtResource("3_n6s1u")
+menu_screen = 1
+menu_label = "Skills"
+metadata/_custom_type_script = "uid://cg7sglte42hsn"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuPanel/VBoxContainer/Content/SkillsMenu" unique_id=110859526]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button" type="Button" parent="MenuPanel/VBoxContainer/Content/SkillsMenu/VBoxContainer" unique_id=432647956]
+layout_mode = 2
+text = "Aerie"
+
+[node name="ItemsMenu" type="Control" parent="MenuPanel/VBoxContainer/Content" unique_id=298282109]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+script = ExtResource("3_n6s1u")
+menu_screen = 2
+menu_label = "Items"
+metadata/_custom_type_script = "uid://cg7sglte42hsn"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuPanel/VBoxContainer/Content/ItemsMenu" unique_id=111298732]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="EquipmentMenu" type="Control" parent="MenuPanel/VBoxContainer/Content" unique_id=171427113]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+script = ExtResource("3_n6s1u")
+menu_screen = 3
+menu_label = "Equipment"
+metadata/_custom_type_script = "uid://cg7sglte42hsn"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuPanel/VBoxContainer/Content/EquipmentMenu" unique_id=502402974]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SAccelMenu" type="Control" parent="MenuPanel/VBoxContainer/Content" unique_id=1512419570]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+script = ExtResource("3_n6s1u")
+menu_screen = 4
+menu_label = "Soul Accelerator"
+metadata/_custom_type_script = "uid://cg7sglte42hsn"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuPanel/VBoxContainer/Content/SAccelMenu" unique_id=2118716709]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StatsMenu" type="Control" parent="MenuPanel/VBoxContainer/Content" unique_id=1727558946]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+script = ExtResource("3_n6s1u")
+menu_screen = 5
+menu_label = "Stats"
+metadata/_custom_type_script = "uid://cg7sglte42hsn"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuPanel/VBoxContainer/Content/StatsMenu" unique_id=135864667]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SaveMenu" type="Control" parent="MenuPanel/VBoxContainer/Content" unique_id=981337178]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+script = ExtResource("3_n6s1u")
+menu_screen = 6
+menu_label = "Save"
+metadata/_custom_type_script = "uid://cg7sglte42hsn"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuPanel/VBoxContainer/Content/SaveMenu" unique_id=1071309025]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LoadMenu" type="Control" parent="MenuPanel/VBoxContainer/Content" unique_id=2087164759]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+script = ExtResource("3_n6s1u")
+menu_screen = 7
+menu_label = "Load"
+metadata/_custom_type_script = "uid://cg7sglte42hsn"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuPanel/VBoxContainer/Content/LoadMenu" unique_id=1756996453]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SystemMenu" type="Control" parent="MenuPanel/VBoxContainer/Content" unique_id=582211539]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+script = ExtResource("3_n6s1u")
+menu_screen = 8
+menu_label = "System"
+metadata/_custom_type_script = "uid://cg7sglte42hsn"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuPanel/VBoxContainer/Content/SystemMenu" unique_id=799836327]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="pressed" from="MenuPanel/VBoxContainer/Content/TopMenu/VBoxContainer/SkillsButton" to="." method="_on_skills_button_pressed"]
+[connection signal="pressed" from="MenuPanel/VBoxContainer/Content/TopMenu/VBoxContainer/ItemsButton" to="." method="_on_items_button_pressed"]
+[connection signal="pressed" from="MenuPanel/VBoxContainer/Content/TopMenu/VBoxContainer/EquipmentButton" to="." method="_on_equipment_button_pressed"]
+[connection signal="pressed" from="MenuPanel/VBoxContainer/Content/TopMenu/VBoxContainer/SAccelButton" to="." method="_on_s_accel_button_pressed"]
+[connection signal="pressed" from="MenuPanel/VBoxContainer/Content/TopMenu/VBoxContainer/StatsButton" to="." method="_on_stats_button_pressed"]
+[connection signal="pressed" from="MenuPanel/VBoxContainer/Content/TopMenu/VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="MenuPanel/VBoxContainer/Content/TopMenu/VBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]
+[connection signal="pressed" from="MenuPanel/VBoxContainer/Content/TopMenu/VBoxContainer/SysButton" to="." method="_on_sys_button_pressed"]

@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://1wwgf2v1j2t7"]
+
+[ext_resource type="Texture2D" uid="uid://dfkhd4xwkws2s" path="res://addons/fgi/fgi_logo.png" id="1_0bep3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qyhhb"]
+size = Vector3(0.5, 1, 0.5)
+
+[node name="DungeonEnemy" type="CharacterBody3D" unique_id=114979189]
+collision_layer = 2
+collision_mask = 15
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=659216435]
+shape = SubResource("BoxShape3D_qyhhb")
+
+[node name="Sprite3D" type="Sprite3D" parent="CollisionShape3D" unique_id=417399816]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+pixel_size = 0.003
+billboard = 1
+texture = ExtResource("1_0bep3")
