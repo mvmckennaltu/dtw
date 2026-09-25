@@ -9,11 +9,19 @@ size = Vector3(0.5, 1, 0.5)
 collision_layer = 2
 collision_mask = 15
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=659216435]
+[node name="EnemyCollider" type="CollisionShape3D" parent="." unique_id=375470990]
 shape = SubResource("BoxShape3D_qyhhb")
 
-[node name="Sprite3D" type="Sprite3D" parent="CollisionShape3D" unique_id=417399816]
+[node name="EnemySprite" type="Sprite3D" parent="." unique_id=417399816]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 pixel_size = 0.003
 billboard = 1
 texture = ExtResource("1_0bep3")
+
+[node name="EnemyHitbox" type="Area3D" parent="." unique_id=2073666871]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
+collision_layer = 2
+collision_mask = 13
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyHitbox" unique_id=659216435]
+shape = SubResource("BoxShape3D_qyhhb")

@@ -53,3 +53,17 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, current_speed)
 	
 	move_and_slide()
+
+
+func _on_area_3d_area_entered(area: Area3D) -> void:
+	var source = area.get_parent()
+	if area.collision_layer == 2:
+		print("oh shit an enemy")
+	start_encounter(source)
+	
+	
+func start_encounter(Node3D):
+	await Fade.fade_out(1, Color(1,1,1,1)).finished
+	#TEMPORARY. Just so the test battle can start.
+	get_tree().change_scene_to_file("uid://dgbhw2tdb5e27")
+	Fade.fade_in(1,Color(1,1,1,1))
