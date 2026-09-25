@@ -75,6 +75,7 @@ func player_attack() -> void:
 	var enemy_hp_string = "You hit {0} for {1} damage!"
 	update_message_text.emit(enemy_hp_string.format([enemy.name, str(damage)]))
 	if not enemy.is_alive():
+		await get_tree().create_timer(0.5).timeout
 		end_battle(true)
 		return
 	await get_tree().create_timer(0.5).timeout
