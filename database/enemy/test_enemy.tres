@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://b4fto8x8kjw0r"]
+
+[ext_resource type="Script" uid="uid://bj18lqeosw4vg" path="res://src/data/enemy_data.gd" id="1_jj4tk"]
+[ext_resource type="Script" uid="uid://d2v2k63tiahp7" path="res://src/data/stats.gd" id="2_3db21"]
+
+[sub_resource type="Resource" id="Resource_c3efr"]
+script = ExtResource("2_3db21")
+metadata/_custom_type_script = "uid://d2v2k63tiahp7"
+
+[resource]
+script = ExtResource("1_jj4tk")
+enemy_name = "Test"
+stats = SubResource("Resource_c3efr")
+metadata/_custom_type_script = "uid://bj18lqeosw4vg"

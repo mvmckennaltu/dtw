@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CharacterData" format=3 uid="uid://d36e6587lw3d8"]
+
+[ext_resource type="Script" uid="uid://d2v2k63tiahp7" path="res://src/data/stats.gd" id="1_4ctyl"]
+[ext_resource type="Script" uid="uid://cl3m27c5m26sw" path="res://src/data/character_data.gd" id="1_l77t8"]
+
+[sub_resource type="Resource" id="Resource_l77t8"]
+script = ExtResource("1_4ctyl")
+max_HP = 50
+metadata/_custom_type_script = "uid://d2v2k63tiahp7"
+
+[resource]
+script = ExtResource("1_l77t8")
+character_name = "Aerie"
+base_stats = SubResource("Resource_l77t8")
+abilities = Array[String](["Dagger"])
+default_saccel = "Ariel"
+metadata/_custom_type_script = "uid://cl3m27c5m26sw"

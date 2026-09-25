@@ -1,3 +1,97 @@
 [gd_scene format=3 uid="uid://dgbhw2tdb5e27"]
 
+[ext_resource type="Script" uid="uid://ggeujxikprr" path="res://src/battle/battle_controller.gd" id="1_1dg5m"]
+[ext_resource type="Script" uid="uid://djsy1wimyf1vs" path="res://src/battle/battle.gd" id="1_d1u53"]
+[ext_resource type="Script" uid="uid://cc6i0gesy76d" path="res://src/battle/battle_battler.gd" id="1_wwoy5"]
+[ext_resource type="Script" uid="uid://d26ewhyx51ylg" path="res://src/ui/current_hp_label.gd" id="2_i3a13"]
+[ext_resource type="Script" uid="uid://dosu3y4cogblm" path="res://src/ui/max_hp_label.gd" id="3_llqio"]
+[ext_resource type="Script" uid="uid://dmw8x54wsqgfd" path="res://src/ui/message_box.gd" id="4_0bf6v"]
+[ext_resource type="Resource" uid="uid://d36e6587lw3d8" path="res://database/party/test_party_member.tres" id="4_cb8w6"]
+[ext_resource type="Resource" uid="uid://b4fto8x8kjw0r" path="res://database/enemy/test_enemy.tres" id="5_i3a13"]
+
 [node name="TestBattle" type="Node3D" unique_id=1581454227]
+script = ExtResource("1_d1u53")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=549367806]
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer" unique_id=791208767]
+offset_left = 138.0
+offset_top = 553.0
+offset_right = 313.0
+offset_bottom = 647.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer" unique_id=1160145496]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="VSeparator" type="VSeparator" parent="CanvasLayer/PanelContainer/HBoxContainer" unique_id=325286631]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/HBoxContainer" unique_id=1506711376]
+layout_mode = 2
+text = "HP:"
+
+[node name="VSeparator2" type="VSeparator" parent="CanvasLayer/PanelContainer/HBoxContainer" unique_id=472166048]
+layout_mode = 2
+
+[node name="CurrentHPLabel" type="Label" parent="CanvasLayer/PanelContainer/HBoxContainer" unique_id=1233815992]
+layout_mode = 2
+text = "num"
+script = ExtResource("2_i3a13")
+
+[node name="Label3" type="Label" parent="CanvasLayer/PanelContainer/HBoxContainer" unique_id=471211989]
+layout_mode = 2
+text = "/"
+
+[node name="MaxHPLabel" type="Label" parent="CanvasLayer/PanelContainer/HBoxContainer" unique_id=1139270575]
+layout_mode = 2
+text = "num"
+script = ExtResource("3_llqio")
+
+[node name="ActionSelect" type="PanelContainer" parent="CanvasLayer" unique_id=1027686962]
+offset_right = 200.0
+offset_bottom = 32.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ActionSelect" unique_id=595755449]
+layout_mode = 2
+
+[node name="AttackButton" type="Button" parent="CanvasLayer/ActionSelect/VBoxContainer" unique_id=1802256177]
+layout_mode = 2
+text = "Attack"
+
+[node name="MessageContainer" type="CenterContainer" parent="CanvasLayer" unique_id=85160629]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -72.0
+offset_top = -40.0
+offset_right = 72.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MessageBox" type="Label" parent="CanvasLayer/MessageContainer" unique_id=1360987345]
+layout_mode = 2
+text = "You dealt damage!"
+script = ExtResource("4_0bf6v")
+
+[node name="Node" type="Node" parent="." unique_id=1282263997]
+
+[node name="Player" type="Node3D" parent="." unique_id=239049684]
+script = ExtResource("1_wwoy5")
+metadata/_custom_type_script = "uid://cc6i0gesy76d"
+
+[node name="Enemy" type="Node3D" parent="." unique_id=1751002208]
+script = ExtResource("1_wwoy5")
+metadata/_custom_type_script = "uid://cc6i0gesy76d"
+
+[node name="BattleController" type="Node3D" parent="." unique_id=1861209715]
+script = ExtResource("1_1dg5m")
+player_data = ExtResource("4_cb8w6")
+enemy_data = ExtResource("5_i3a13")
+
+[connection signal="pressed" from="CanvasLayer/ActionSelect/VBoxContainer/AttackButton" to="BattleController" method="_on_attack_button_pressed"]
+[connection signal="send_current_hp" from="BattleController" to="CanvasLayer/PanelContainer/HBoxContainer/CurrentHPLabel" method="_on_battle_controller_send_current_hp"]
+[connection signal="send_max_hp" from="BattleController" to="CanvasLayer/PanelContainer/HBoxContainer/MaxHPLabel" method="_on_battle_controller_send_max_hp"]
+[connection signal="update_message_text" from="BattleController" to="CanvasLayer/MessageContainer/MessageBox" method="_on_battle_controller_update_message_text"]
