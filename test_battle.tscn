@@ -91,6 +91,8 @@ script = ExtResource("1_1dg5m")
 player_data = ExtResource("4_cb8w6")
 enemy_data = ExtResource("5_i3a13")
 
+[node name="PartyContainer" type="Node" parent="." unique_id=193493790]
+
 [connection signal="pressed" from="CanvasLayer/ActionSelect/VBoxContainer/AttackButton" to="BattleController" method="_on_attack_button_pressed"]
 [connection signal="send_current_hp" from="BattleController" to="CanvasLayer/PanelContainer/HBoxContainer/CurrentHPLabel" method="_on_battle_controller_send_current_hp"]
 [connection signal="send_max_hp" from="BattleController" to="CanvasLayer/PanelContainer/HBoxContainer/MaxHPLabel" method="_on_battle_controller_send_max_hp"]

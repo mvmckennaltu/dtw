@@ -12,6 +12,10 @@ var turn_order: Array[Battler]
 var current_turn_index := 0
 var player: Battler
 var enemy: Battler
+@export var party: Party
+@export var encounter: Encounter
+var party_battlers: Array[Battler] = []
+var enemy_battlers: Array[Battler] = []
 var battle_state : BattleState
 signal send_current_hp(value: int)
 signal send_max_hp(value: int)
