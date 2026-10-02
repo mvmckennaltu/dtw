@@ -1,17 +1,21 @@
-[gd_resource type="Resource" script_class="CharacterData" format=3 uid="uid://d36e6587lw3d8"]
+[gd_resource type="Resource" script_class="CharacterState" format=3 uid="uid://d36e6587lw3d8"]
 
 [ext_resource type="Script" uid="uid://d2v2k63tiahp7" path="res://src/data/stats.gd" id="1_4ctyl"]
 [ext_resource type="Script" uid="uid://cl3m27c5m26sw" path="res://src/data/character_data.gd" id="1_l77t8"]
+[ext_resource type="Script" uid="uid://bu7gc3pabhpkv" path="res://src/data/character_state.gd" id="3_1kgy8"]
 
-[sub_resource type="Resource" id="Resource_l77t8"]
+[sub_resource type="Resource" id="Resource_1kgy8"]
 script = ExtResource("1_4ctyl")
-max_HP = 50
+DEX = 8
 metadata/_custom_type_script = "uid://d2v2k63tiahp7"
 
-[resource]
+[sub_resource type="Resource" id="Resource_4ctyl"]
 script = ExtResource("1_l77t8")
-character_name = "Aerie"
-base_stats = SubResource("Resource_l77t8")
-abilities = Array[String](["Dagger"])
-default_saccel = "Ariel"
+character_name = "Chahcle"
+base_stats = SubResource("Resource_1kgy8")
 metadata/_custom_type_script = "uid://cl3m27c5m26sw"
+
+[resource]
+script = ExtResource("3_1kgy8")
+definition = SubResource("Resource_4ctyl")
+metadata/_custom_type_script = "uid://bu7gc3pabhpkv"

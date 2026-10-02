@@ -1,0 +1,94 @@
+[gd_resource type="Resource" script_class="Party" format=3 uid="uid://bad0rnyjjj5bn"]
+
+[ext_resource type="Script" uid="uid://bu7gc3pabhpkv" path="res://src/data/character_state.gd" id="1_qu66m"]
+[ext_resource type="Script" uid="uid://dawvds2t0qj4y" path="res://src/data/party.gd" id="2_tm1ky"]
+[ext_resource type="Script" uid="uid://d2v2k63tiahp7" path="res://src/data/stats.gd" id="2_u4jj2"]
+[ext_resource type="Script" uid="uid://cl3m27c5m26sw" path="res://src/data/character_data.gd" id="3_1ojth"]
+
+[sub_resource type="Resource" id="Resource_u4jj2"]
+script = ExtResource("2_u4jj2")
+max_HP = 50
+DEX = 8
+metadata/_custom_type_script = "uid://d2v2k63tiahp7"
+
+[sub_resource type="Resource" id="Resource_1ojth"]
+script = ExtResource("3_1ojth")
+character_name = "Aerie"
+base_stats = SubResource("Resource_u4jj2")
+metadata/_custom_type_script = "uid://cl3m27c5m26sw"
+
+[sub_resource type="Resource" id="Resource_qd01b"]
+script = ExtResource("1_qu66m")
+definition = SubResource("Resource_1ojth")
+metadata/_custom_type_script = "uid://bu7gc3pabhpkv"
+
+[sub_resource type="Resource" id="Resource_ej3kg"]
+script = ExtResource("2_u4jj2")
+max_HP = 35
+metadata/_custom_type_script = "uid://d2v2k63tiahp7"
+
+[sub_resource type="Resource" id="Resource_mxk6s"]
+script = ExtResource("3_1ojth")
+character_name = "Ponoparko"
+base_stats = SubResource("Resource_ej3kg")
+metadata/_custom_type_script = "uid://cl3m27c5m26sw"
+
+[sub_resource type="Resource" id="Resource_lrbvf"]
+script = ExtResource("1_qu66m")
+definition = SubResource("Resource_mxk6s")
+metadata/_custom_type_script = "uid://bu7gc3pabhpkv"
+
+[sub_resource type="Resource" id="Resource_l5tgl"]
+script = ExtResource("2_u4jj2")
+DEX = 3
+metadata/_custom_type_script = "uid://d2v2k63tiahp7"
+
+[sub_resource type="Resource" id="Resource_owrnl"]
+script = ExtResource("3_1ojth")
+character_name = "Monakka"
+base_stats = SubResource("Resource_l5tgl")
+metadata/_custom_type_script = "uid://cl3m27c5m26sw"
+
+[sub_resource type="Resource" id="Resource_gdhb5"]
+script = ExtResource("1_qu66m")
+definition = SubResource("Resource_owrnl")
+metadata/_custom_type_script = "uid://bu7gc3pabhpkv"
+
+[sub_resource type="Resource" id="Resource_n6bag"]
+script = ExtResource("2_u4jj2")
+max_HP = 35
+DEX = 6
+metadata/_custom_type_script = "uid://d2v2k63tiahp7"
+
+[sub_resource type="Resource" id="Resource_7wmbl"]
+script = ExtResource("3_1ojth")
+character_name = "Chacle"
+base_stats = SubResource("Resource_n6bag")
+metadata/_custom_type_script = "uid://cl3m27c5m26sw"
+
+[sub_resource type="Resource" id="Resource_xun7c"]
+script = ExtResource("1_qu66m")
+definition = SubResource("Resource_7wmbl")
+metadata/_custom_type_script = "uid://bu7gc3pabhpkv"
+
+[sub_resource type="Resource" id="Resource_alps7"]
+script = ExtResource("2_u4jj2")
+max_HP = 45
+DEX = 10
+metadata/_custom_type_script = "uid://d2v2k63tiahp7"
+
+[sub_resource type="Resource" id="Resource_awg4r"]
+script = ExtResource("3_1ojth")
+character_name = "Veil"
+base_stats = SubResource("Resource_alps7")
+metadata/_custom_type_script = "uid://cl3m27c5m26sw"
+
+[sub_resource type="Resource" id="Resource_curvt"]
+script = ExtResource("1_qu66m")
+definition = SubResource("Resource_awg4r")
+metadata/_custom_type_script = "uid://bu7gc3pabhpkv"
+
+[resource]
+script = ExtResource("2_tm1ky")
+members = Array[ExtResource("1_qu66m")]([SubResource("Resource_qd01b"), SubResource("Resource_lrbvf"), SubResource("Resource_gdhb5"), SubResource("Resource_xun7c"), SubResource("Resource_curvt")])
+metadata/_custom_type_script = "uid://dawvds2t0qj4y"

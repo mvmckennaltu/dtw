@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dbaenunm43372"]
+
+[ext_resource type="Script" uid="uid://bp7inhupwmgim" path="res://src/ui/turn_order_entry.gd" id="1_6spo0"]
+
+[node name="TurnOrderEntry" type="Button" unique_id=1565868211]
+script = ExtResource("1_6spo0")
