@@ -10,3 +10,4 @@ extends Resource
 @export var current_sp: int
 
 @export var equipment: Array[Resource] = []
+@export var soul_accelerators: Array[SAccel]

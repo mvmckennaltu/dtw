@@ -4,6 +4,8 @@
 [ext_resource type="Script" uid="uid://dawvds2t0qj4y" path="res://src/data/party.gd" id="2_tm1ky"]
 [ext_resource type="Script" uid="uid://d2v2k63tiahp7" path="res://src/data/stats.gd" id="2_u4jj2"]
 [ext_resource type="Script" uid="uid://cl3m27c5m26sw" path="res://src/data/character_data.gd" id="3_1ojth"]
+[ext_resource type="Script" uid="uid://dvsb2w3h0up14" path="res://src/data/saccel.gd" id="4_qd01b"]
+[ext_resource type="Script" uid="uid://cinimpi1dlebe" path="res://src/data/skill.gd" id="5_ej3kg"]
 
 [sub_resource type="Resource" id="Resource_u4jj2"]
 script = ExtResource("2_u4jj2")
@@ -17,9 +19,14 @@ character_name = "Aerie"
 base_stats = SubResource("Resource_u4jj2")
 metadata/_custom_type_script = "uid://cl3m27c5m26sw"
 
+[sub_resource type="Resource" id="Resource_0bf6v"]
+script = ExtResource("4_qd01b")
+metadata/_custom_type_script = "uid://dvsb2w3h0up14"
+
 [sub_resource type="Resource" id="Resource_qd01b"]
 script = ExtResource("1_qu66m")
 definition = SubResource("Resource_1ojth")
+soul_accelerators = Array[ExtResource("4_qd01b")]([SubResource("Resource_0bf6v")])
 metadata/_custom_type_script = "uid://bu7gc3pabhpkv"
 
 [sub_resource type="Resource" id="Resource_ej3kg"]

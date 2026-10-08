@@ -4,11 +4,16 @@ enum BattleState {
 	PLAYER_TURN,
 	ENEMY_TURN,
 	VICTORY,
-	DEFEAT
+	DEFEAT,
+	COMMAND
+}
+enum ActionType {
+	NORMAL_ATTACK,
+	STRONG_ATTACK
 }
 @export var party: Party
 @export var encounter: Encounter
-
+var planned_actions: Dictionary = {}
 var turn_order: Array[Battler] = []
 var current_turn_index := 0
 
@@ -256,3 +261,10 @@ func calculate_initiative() -> void:
 	turn_order = initial_turn_order.duplicate()
 func compare_initiative(a: Battler, b: Battler) -> bool:
 	return a.DEX > b.DEX
+
+func start_command_phase() -> void:
+	battle_state = BattleState.COMMAND
+	
+	planned_actions.clear()
+	
+	print("Command phase started!")
