@@ -9,3 +9,6 @@ func set_battler(new_battler: Battler) -> void:
 		battler.name,
 		str(battler.DEX)
 	])
+
+
+	
