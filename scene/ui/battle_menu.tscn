@@ -1,0 +1,142 @@
+[gd_scene format=3 uid="uid://6i4su86ph3k7"]
+
+[ext_resource type="Script" uid="uid://cxkyltm8hke33" path="res://src/ui/battle/battle_menu_control.gd" id="1_fuy1b"]
+[ext_resource type="Script" uid="uid://ydpc4tjvccfe" path="res://src/ui/battle/initiative_panel_controller.gd" id="2_345dx"]
+[ext_resource type="Script" uid="uid://dmw8x54wsqgfd" path="res://src/ui/battle/message_box.gd" id="3_ne6ci"]
+[ext_resource type="Script" uid="uid://cnpnq0yi50d0e" path="res://src/ui/battle/player_panel_controller.gd" id="4_cx5gg"]
+
+[node name="BattleMenuControl" type="Control" unique_id=1754857765]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_fuy1b")
+
+[node name="InitiativePanel" type="PanelContainer" parent="." unique_id=1668451562]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 760.0
+offset_right = 1060.0
+offset_bottom = 400.0
+grow_horizontal = 0
+script = ExtResource("2_345dx")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InitiativePanel" unique_id=1406108968]
+layout_mode = 2
+
+[node name="MainActionSelect" type="PanelContainer" parent="." unique_id=1764621036]
+visible = false
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 136.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainActionSelect" unique_id=78528083]
+layout_mode = 2
+
+[node name="StratButton" type="Button" parent="MainActionSelect/VBoxContainer" unique_id=1475202290]
+layout_mode = 2
+text = "Strategy"
+
+[node name="StartBattleButton" type="Button" parent="MainActionSelect/VBoxContainer" unique_id=810050913]
+layout_mode = 2
+text = "Start Battle"
+
+[node name="StrategyMenu" type="PanelContainer" parent="." unique_id=218697192]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 136.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StrategyMenu" unique_id=1221582376]
+layout_mode = 2
+
+[node name="AllAttackButton" type="Button" parent="StrategyMenu/VBoxContainer" unique_id=664441961]
+layout_mode = 2
+text = "All Attack"
+
+[node name="SwapOrderButton" type="Button" parent="StrategyMenu/VBoxContainer" unique_id=1532538696]
+layout_mode = 2
+text = "Swap Order"
+
+[node name="BackButton" type="Button" parent="StrategyMenu/VBoxContainer" unique_id=610235513]
+layout_mode = 2
+text = "Back"
+
+[node name="SkillMenu" type="PanelContainer" parent="." unique_id=157985002]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 136.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SkillMenu" unique_id=83170736]
+layout_mode = 2
+
+[node name="AttackButton" type="Button" parent="SkillMenu/VBoxContainer" unique_id=993553039]
+layout_mode = 2
+text = "Attack"
+
+[node name="StrongAttackButton" type="Button" parent="SkillMenu/VBoxContainer" unique_id=1122666354]
+layout_mode = 2
+text = "Strong Attack"
+
+[node name="BackButton" type="Button" parent="SkillMenu/VBoxContainer" unique_id=1134741688]
+layout_mode = 2
+text = "Back"
+
+[node name="OrderMenu" type="PanelContainer" parent="." unique_id=1298492970]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 136.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OrderMenu" unique_id=1593490271]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="OrderMenu/VBoxContainer" unique_id=1003359633]
+layout_mode = 2
+text = "Back"
+
+[node name="MessageContainer" type="CenterContainer" parent="." unique_id=1435470554]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 484.0
+offset_top = 510.0
+offset_right = 628.0
+offset_bottom = 550.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MessageBox" type="Label" parent="MessageContainer" unique_id=1977490952]
+layout_mode = 2
+text = "You dealt damage!"
+script = ExtResource("3_ne6ci")
+
+[node name="SplitContainer" type="SplitContainer" parent="." unique_id=521686999]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.5
+offset_top = 568.0
+offset_right = 1132.5
+offset_bottom = 608.0
+grow_horizontal = 2
+grow_vertical = 0
+split_offsets = PackedInt32Array(221)
+split_offset = 221
+script = ExtResource("4_cx5gg")
+
+[connection signal="pressed" from="MainActionSelect/VBoxContainer/StratButton" to="." method="_on_strat_button_pressed"]
+[connection signal="pressed" from="MainActionSelect/VBoxContainer/StartBattleButton" to="." method="_on_start_battle_button_pressed"]
+[connection signal="pressed" from="StrategyMenu/VBoxContainer/AllAttackButton" to="." method="_on_all_attack_button_pressed"]
+[connection signal="pressed" from="StrategyMenu/VBoxContainer/SwapOrderButton" to="." method="_on_swap_order_button_pressed"]
+[connection signal="pressed" from="StrategyMenu/VBoxContainer/BackButton" to="." method="_on_strategy_back_button_pressed"]
+[connection signal="pressed" from="SkillMenu/VBoxContainer/AttackButton" to="." method="_on_attack_button_pressed"]
+[connection signal="pressed" from="SkillMenu/VBoxContainer/StrongAttackButton" to="." method="_on_strong_attack_button_pressed"]
+[connection signal="pressed" from="SkillMenu/VBoxContainer/BackButton" to="." method="_on_skill_back_button_pressed"]
+[connection signal="pressed" from="OrderMenu/VBoxContainer/BackButton" to="." method="_on_order_back_button_pressed"]

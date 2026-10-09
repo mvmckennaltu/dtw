@@ -2,11 +2,12 @@ extends SplitContainer
 const PARTY_MEMBER_STATUS = preload(
 	"uid://dbv2uewflycon"
 )
-
+@onready var battle_controller: BattleController = $"../../../BattleController"
 var status_panels: Dictionary = {}
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	battle_controller.battler_hp_changed.connect(_on_battle_controller_battler_hp_changed)
+	battle_controller.party_created.connect(setup_party)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -26,6 +27,11 @@ func setup_party(battlers: Array[Battler]) -> void:
 	
 
 func _on_battle_controller_battler_hp_changed(battler: Battler) -> void:
+	var panel = status_panels.get(battler)
+	
+	if panel:
+		panel.update_display()
+func _on_battle_controller_battler_sp_changed(battler: Battler) -> void:
 	var panel = status_panels.get(battler)
 	
 	if panel:

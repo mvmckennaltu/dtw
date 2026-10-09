@@ -9,35 +9,65 @@ offset_right = 313.0
 offset_bottom = 647.0
 script = ExtResource("1_opgwt")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=20876578]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1058155970]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=20876578]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="VSeparator" type="VSeparator" parent="HBoxContainer" unique_id=776135148]
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/HBoxContainer" unique_id=776135148]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer" unique_id=406677397]
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=406677397]
 layout_mode = 2
 text = "HP:"
 
-[node name="VSeparator2" type="VSeparator" parent="HBoxContainer" unique_id=298050055]
+[node name="VSeparator2" type="VSeparator" parent="VBoxContainer/HBoxContainer" unique_id=298050055]
 layout_mode = 2
 
-[node name="CurrentHPLabel" type="Label" parent="HBoxContainer" unique_id=825316021]
+[node name="CurrentHPLabel" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=825316021]
 layout_mode = 2
 text = "num"
 
-[node name="Label3" type="Label" parent="HBoxContainer" unique_id=1797335756]
+[node name="Label3" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=1797335756]
 layout_mode = 2
 text = "/"
 
-[node name="MaxHPLabel" type="Label" parent="HBoxContainer" unique_id=472799712]
+[node name="MaxHPLabel" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=472799712]
 layout_mode = 2
 text = "num"
 
-[node name="Name" type="Label" parent="HBoxContainer" unique_id=610660877]
+[node name="Name" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=610660877]
 layout_mode = 2
 offset_transform_enabled = true
-offset_transform_position = Vector2(-70, -30)
+offset_transform_position = Vector2(-70, 60)
 text = "Name"
 horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=40361055]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/HBoxContainer2" unique_id=663260093]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2" unique_id=790562289]
+layout_mode = 2
+text = "SP:"
+
+[node name="VSeparator2" type="VSeparator" parent="VBoxContainer/HBoxContainer2" unique_id=669308524]
+layout_mode = 2
+offset_transform_enabled = true
+
+[node name="CurrentSPLabel" type="Label" parent="VBoxContainer/HBoxContainer2" unique_id=146252788]
+layout_mode = 2
+text = "num"
+
+[node name="Label3" type="Label" parent="VBoxContainer/HBoxContainer2" unique_id=1559334935]
+layout_mode = 2
+text = "/"
+
+[node name="MaxSPLabel" type="Label" parent="VBoxContainer/HBoxContainer2" unique_id=1582918097]
+layout_mode = 2
+text = "num"

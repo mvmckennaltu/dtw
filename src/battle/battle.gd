@@ -4,4 +4,4 @@ extends Node3D
 
 func _ready() -> void:
 	battle_controller.start_battle()
-	$CanvasLayer/ActionSelect/VBoxContainer/AttackButton.grab_focus()
+	$CanvasLayer/BattleMenuControl/MainActionSelect/VBoxContainer/StratButton.grab_focus()

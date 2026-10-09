@@ -28,7 +28,8 @@ func is_alive() -> bool:
 func setup(stats: Stats) -> void:
 	max_hp = stats.max_hp
 	current_hp = stats.max_hp
-
+	max_sp = stats.max_sp
+	current_sp = stats.max_sp
 	STR = stats.STR
 	DEX = stats.DEX
 	DEF = stats.DEF
