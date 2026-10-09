@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="SAccel" format=3 uid="uid://dpl0n5phgwuam"]
+
+[ext_resource type="Script" uid="uid://dvsb2w3h0up14" path="res://src/data/saccel.gd" id="1_6rn4i"]
+[ext_resource type="Script" uid="uid://cinimpi1dlebe" path="res://src/data/skill.gd" id="2_l3nd3"]
+[ext_resource type="Resource" uid="uid://bony2x6mtfb5k" path="res://database/skill/test_skill1.tres" id="3_e7bkw"]
+[ext_resource type="Resource" uid="uid://bchcxvqn8fmqj" path="res://database/skill/test_skill2.tres" id="4_u0bkd"]
+
+[resource]
+script = ExtResource("1_6rn4i")
+saccel_name = "Testing1"
+skills = Array[ExtResource("2_l3nd3")]([ExtResource("3_e7bkw"), ExtResource("4_u0bkd")])
+STR_modifier = 1
+DEX_modifier = 2
+DEF_modifier = -2
+LUC_modifier = 3
+sharp_affinity = 2
+earth_affinity = 3
+water_affinity = 2
+wind_affinity = 1
+metadata/_custom_type_script = "uid://dvsb2w3h0up14"

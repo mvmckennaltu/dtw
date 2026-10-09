@@ -28,11 +28,19 @@ func equip_saccel(saccel: SAccel) -> bool:
 
 
 func get_available_skills() -> Array[Skill]:
-	if equipped_saccel == null:
-		return []
+	var available: Array[Skill] = []
 
-	# Return a copy so callers don't modify the resource's skill list.
-	return equipped_saccel.skills.duplicate()
+	# The universal melee attack is always available.
+	if definition != null and definition.melee_skill != null:
+		available.append(definition.melee_skill)
+
+	# Add the equipped SAccel's skills.
+	if equipped_saccel != null:
+		for skill in equipped_saccel.skills:
+			if skill != null and not available.has(skill):
+				available.append(skill)
+
+	return available
 
 
 func get_base_stats() -> Stats:
@@ -103,8 +111,7 @@ func get_max_sp() -> int:
 	if stats == null:
 		return 0
 
-	return stats.maxSP
-
+	return stats.max_SP
 
 func get_elemental_affinity(
 	element: Elements.ElementType

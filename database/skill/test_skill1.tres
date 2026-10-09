@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://bony2x6mtfb5k"]
+
+[ext_resource type="Script" uid="uid://cinimpi1dlebe" path="res://src/data/skill.gd" id="1_tswsr"]
+
+[resource]
+script = ExtResource("1_tswsr")
+skill_name = "Inflame"
+skill_element = 2
+power = 1.5
+metadata/_custom_type_script = "uid://cinimpi1dlebe"

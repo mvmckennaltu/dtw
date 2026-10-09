@@ -71,14 +71,6 @@ offset_bottom = 136.0
 [node name="VBoxContainer" type="VBoxContainer" parent="SkillMenu" unique_id=83170736]
 layout_mode = 2
 
-[node name="AttackButton" type="Button" parent="SkillMenu/VBoxContainer" unique_id=993553039]
-layout_mode = 2
-text = "Attack"
-
-[node name="StrongAttackButton" type="Button" parent="SkillMenu/VBoxContainer" unique_id=1122666354]
-layout_mode = 2
-text = "Strong Attack"
-
 [node name="BackButton" type="Button" parent="SkillMenu/VBoxContainer" unique_id=1134741688]
 layout_mode = 2
 text = "Back"
@@ -136,7 +128,5 @@ script = ExtResource("4_cx5gg")
 [connection signal="pressed" from="StrategyMenu/VBoxContainer/AllAttackButton" to="." method="_on_all_attack_button_pressed"]
 [connection signal="pressed" from="StrategyMenu/VBoxContainer/SwapOrderButton" to="." method="_on_swap_order_button_pressed"]
 [connection signal="pressed" from="StrategyMenu/VBoxContainer/BackButton" to="." method="_on_strategy_back_button_pressed"]
-[connection signal="pressed" from="SkillMenu/VBoxContainer/AttackButton" to="." method="_on_attack_button_pressed"]
-[connection signal="pressed" from="SkillMenu/VBoxContainer/StrongAttackButton" to="." method="_on_strong_attack_button_pressed"]
 [connection signal="pressed" from="SkillMenu/VBoxContainer/BackButton" to="." method="_on_skill_back_button_pressed"]
 [connection signal="pressed" from="OrderMenu/VBoxContainer/BackButton" to="." method="_on_order_back_button_pressed"]

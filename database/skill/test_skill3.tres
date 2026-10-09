@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://xknvem8era7f"]
+
+[ext_resource type="Script" uid="uid://cinimpi1dlebe" path="res://src/data/skill.gd" id="1_36e7b"]
+
+[resource]
+script = ExtResource("1_36e7b")
+skill_name = "Gale Force"
+skill_element = 5
+power = 2.0
+sp_cost = 3
+metadata/_custom_type_script = "uid://cinimpi1dlebe"

@@ -5,6 +5,7 @@
 
 [sub_resource type="Resource" id="Resource_3db21"]
 script = ExtResource("2_3db21")
+max_HP = 8
 DEX = 9
 metadata/_custom_type_script = "uid://d2v2k63tiahp7"
 
@@ -12,4 +13,5 @@ metadata/_custom_type_script = "uid://d2v2k63tiahp7"
 script = ExtResource("1_jj4tk")
 enemy_name = "Test"
 stats = SubResource("Resource_3db21")
+sharp_affinity = 2
 metadata/_custom_type_script = "uid://bj18lqeosw4vg"

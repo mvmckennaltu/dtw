@@ -24,6 +24,8 @@ var party_battlers: Array[Battler] = []
 var enemy_battlers: Array[Battler] = []
 var initial_turn_order: Array[Battler] = []
 var battle_state: BattleState
+var battler_character_states: Dictionary = {}
+var battler_enemy_data: Dictionary = {}
 signal send_current_hp(value: int)
 signal send_max_hp(value: int)
 signal battler_hp_changed(battler: Battler)
@@ -36,6 +38,8 @@ func start_battle() -> void:
 	party_battlers.clear()
 	enemy_battlers.clear()
 	turn_order.clear()
+	battler_character_states.clear()
+	battler_enemy_data.clear()
 	current_turn_index = 0
 	var message := "{0} enemies wish to fight!"
 	create_party_battlers()
@@ -72,18 +76,19 @@ func create_party_battlers() -> void:
 	for member in party.members:
 		var battler := create_party_battler(member)
 		party_battlers.append(battler)
+		battler_character_states[battler] = member
 func create_party_battler(state: CharacterState) -> Battler:
 	var battler := Battler.new()
 	battler.name = state.definition.character_name
-	battler.max_hp = state.definition.base_stats.max_HP
+	battler.max_hp = state.get_max_hp()
 	battler.current_hp = battler.max_hp
-	battler.max_sp = state.definition.base_stats.max_SP
-	battler.current_sp = battler.max_sp
-	battler.STR = state.definition.base_stats.STR
-	battler.DEX = state.definition.base_stats.DEX
-	battler.DEF = state.definition.base_stats.DEF
-	battler.LUC = state.definition.base_stats.LUC
-	battler.LVL = state.definition.base_stats.LVL
+	battler.max_sp = state.get_max_sp()
+	battler.current_sp = state.get_max_sp()
+	battler.STR = state.get_effective_str()
+	battler.DEX = state.get_effective_dex()
+	battler.DEF = state.get_effective_def()
+	battler.LUC = state.get_effective_luc()
+	battler.LVL = state.level
 	battler_hp_changed.emit(battler)
 	battler_sp_changed.emit(battler)
 	return battler
@@ -103,6 +108,7 @@ func create_enemy_battlers():
 	for data in encounter.enemies:
 		var battler := create_enemy_battler(data)
 		enemy_battlers.append(battler)
+		battler_enemy_data[battler] = data
 func start_turn() -> void:
 	var battler := turn_order[current_turn_index]
 	
@@ -294,23 +300,21 @@ func get_current_command_battler() -> Battler:
 			return battler
 
 	return null
-func queue_action(
-	battler: Battler,
-	action: ActionType
-) -> void:
+func queue_action(battler: Battler, action: Variant) -> void:
 	if not party_battlers.has(battler):
 		return
-	
+
 	if not battler.is_alive():
 		return
-	
+
+	# Player-selected actions must be Skill resources.
+	if not (action is Skill):
+		push_warning("Party actions must be Skill resources.")
+		return
+
 	planned_actions[battler] = action
-	
-	print(
-		battler.name,
-		" queued action: ",
-		action
-	)
+
+	print(battler.name, " queued skill: ", action.skill_name)
 func all_party_actions_selected() -> bool:
 	for battler in party_battlers:
 		if battler.is_alive() and not planned_actions.has(battler):
@@ -385,16 +389,18 @@ func advance_resolution_turn() -> void:
 		end_round()
 	else:
 		resolve_next_action()
-func execute_action(
-	battler: Battler,
-	action: ActionType
-) -> void:
+func execute_action(battler: Battler, action: Variant) -> void:
+	if action is Skill:
+		await execute_skill(battler, action)
+		return
+
+	# Keep the existing basic enemy attack as a fallback.
 	match action:
 		ActionType.NORMAL_ATTACK:
 			await execute_attack(battler, 1.0)
-		
 		ActionType.STRONG_ATTACK:
 			await execute_attack(battler, 2.0)
+
 func execute_attack(
 	attacker: Battler,
 	damage_multiplier: float
@@ -548,5 +554,141 @@ func enforce_enemy_initiative_constraints() -> void:
 			turn_order.remove_at(member_index)
 			turn_order.insert(faster_enemy_index, party_member)
 func set_all_actions_to_attack():
+	var melee_skill : Skill = preload("res://database/skill/test_melee.tres")
 	for battler in party_battlers:
-		queue_action(battler, ActionType.NORMAL_ATTACK)
+		queue_action(battler, melee_skill)
+
+func get_target_affinity(
+	target: Battler,
+	element: Elements.ElementType
+) -> int:
+	if battler_character_states.has(target):
+		var state: CharacterState = battler_character_states[target]
+		return state.get_elemental_affinity(element)
+
+	if battler_enemy_data.has(target):
+		var data: EnemyData = battler_enemy_data[target]
+		return data.get_affinity(element)
+
+	return SAccel.Affinity.NORMAL
+
+
+func execute_skill(attacker: Battler, skill: Skill) -> void:
+	if skill == null:
+		return
+
+	# Check the SP cost before executing the skill.
+	if attacker.current_sp < skill.sp_cost:
+		update_message_text.emit(
+			attacker.name + " doesn't have enough SP!"
+		)
+		return
+
+	attacker.current_sp -= skill.sp_cost
+	battler_sp_changed.emit(attacker)
+
+	match skill.skill_type:
+		Skill.SkillType.ATTACK:
+			await execute_skill_damage(attacker, skill, attacker.STR)
+
+		Skill.SkillType.MAGICATTACK:
+			await execute_skill_damage(attacker, skill, attacker.LUC)
+
+		Skill.SkillType.HEALING:
+			execute_skill_healing(attacker, skill)
+
+		Skill.SkillType.BUFF:
+			update_message_text.emit(
+				skill.skill_name + " isn't implemented yet."
+			)
+
+		Skill.SkillType.SPECIAL:
+			update_message_text.emit(
+				skill.skill_name + " isn't implemented yet."
+			)
+
+func execute_skill_damage(
+	attacker: Battler,
+	skill: Skill,
+	attack_stat: int
+) -> void:
+	var target: Battler
+
+	if party_battlers.has(attacker):
+		target = get_first_alive_enemy()
+	else:
+		target = get_random_alive_party_member()
+
+	if target == null:
+		return
+
+	var raw_damage := maxi(
+		1,
+		int(attack_stat * skill.power) - target.DEF
+	)
+
+	var affinity: int = get_target_affinity(
+		target,
+		skill.skill_element
+	)
+
+	var damage: int
+
+	match affinity:
+		SAccel.Affinity.NULLIFY:
+			damage = 0
+		SAccel.Affinity.STRONG:
+			damage = int(raw_damage * 0.5)
+		SAccel.Affinity.WEAK:
+			damage = int(raw_damage * 1.5)
+		_:
+			damage = raw_damage
+
+	target.take_damage(damage)
+	battler_hp_changed.emit(target)
+
+	var message: String
+
+	if affinity == SAccel.Affinity.NULLIFY:
+		message = target.name + " nullified " + skill.skill_name + "!"
+	else:
+		message = (
+			attacker.name + " used " + skill.skill_name
+			+ " on " + target.name + " for "
+			+ str(damage) + " damage!"
+		)
+
+	update_message_text.emit(message)
+
+	await get_tree().create_timer(0.5).timeout
+
+
+func execute_skill_healing(
+	attacker: Battler,
+	skill: Skill
+) -> void:
+	var old_hp := attacker.current_hp
+	var healing := maxi(1, int(attacker.LUC * skill.power))
+
+	attacker.current_hp = mini(
+		attacker.current_hp + healing,
+		attacker.max_hp
+	)
+
+	var actual_healing := attacker.current_hp - old_hp
+	battler_hp_changed.emit(attacker)
+
+	update_message_text.emit(
+		attacker.name + " used " + skill.skill_name
+		+ " and recovered " + str(actual_healing) + " HP!"
+	)
+
+	await get_tree().create_timer(0.5).timeout
+func _on_skill_selected(skill: Skill) -> void:
+	var battler := get_current_command_battler()
+
+	if battler == null:
+		return
+
+	queue_action(battler, skill)
+	

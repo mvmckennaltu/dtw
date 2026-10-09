@@ -8,6 +8,9 @@ class_name BattleMenuController
 @onready var start_button = $MainActionSelect/VBoxContainer/StartBattleButton
 @onready var strategy_container: VBoxContainer = $StrategyMenu/VBoxContainer
 @onready var message_box = $MessageContainer/MessageBox
+@onready var skill_container: VBoxContainer = $SkillMenu/VBoxContainer
+@onready var skill_back_button: Button = \
+	$SkillMenu/VBoxContainer/BackButton
 @onready var initiative_panel_controller = \
 	$InitiativePanel
 
@@ -41,8 +44,9 @@ func open_strategy_menu() -> void:
 
 func open_skill_menu(battler: Battler) -> void:
 	selected_command_battler = battler
-	var skill_button = $SkillMenu/VBoxContainer.get_child(0)
-	skill_button.grab_focus()
+
+	refresh_skill_menu()
+
 	strategy_menu.hide()
 	skill_menu.show()
 
@@ -109,11 +113,16 @@ func refresh_strategy_menu() -> void:
 		strategy_container.add_child(button)
 		strategy_container.move_child(button, insert_index)
 		insert_index += 1
-func action_name(action: int) -> String:
+func action_name(action: Variant) -> String:
+	# New system: party actions are Skill resources.
+	if action is Skill:
+		return action.skill_name
+
+	# Legacy system: handle old ActionType enum values.
 	match action:
-		battle_controller.ActionType.NORMAL_ATTACK:
+		BattleController.ActionType.NORMAL_ATTACK:
 			return "Attack"
-		battle_controller.ActionType.STRONG_ATTACK:
+		BattleController.ActionType.STRONG_ATTACK:
 			return "Strong Attack"
 		_:
 			return "Unknown action"
@@ -174,4 +183,56 @@ func _on_strong_attack_button_pressed() -> void:
 
 func _on_all_attack_button_pressed() -> void:
 	all_attack.emit()
+	refresh_strategy_menu()
+func create_skill_button(skill: Skill) -> Button:
+	var button := Button.new()
+	button.text = skill.skill_name
+	button.set_meta("generated_skill_button", true)
+
+	button.pressed.connect(
+		_on_skill_button_pressed.bind(skill)
+	)
+
+	return button
+
+func refresh_skill_menu() -> void:
+	# Remove previously generated skill buttons.
+	for child in skill_container.get_children():
+		if child.has_meta("generated_skill_button"):
+			child.queue_free()
+
+	if selected_command_battler == null:
+		return
+
+	# Find the persistent character state for this battler.
+	var state: CharacterState = \
+		battle_controller.battler_character_states.get(
+			selected_command_battler
+		)
+
+	if state == null:
+		push_warning("Could not find CharacterState for selected battler.")
+		return
+
+	# Generate one button for each currently available skill.
+	for skill in state.get_available_skills():
+		if skill == null:
+			continue
+
+		var button := create_skill_button(skill)
+		button.set_meta("generated_skill_button", true)
+
+		# Add the button to the actual Skills menu.
+		skill_container.add_child(button)
+		skill_container.move_child(button,skill_back_button.get_index())
+func _on_skill_button_pressed(skill: Skill) -> void:
+	if selected_command_battler == null:
+		return
+
+	battle_controller.queue_action(
+		selected_command_battler,
+		skill
+	)
+
+	return_to_strategy()
 	refresh_strategy_menu()

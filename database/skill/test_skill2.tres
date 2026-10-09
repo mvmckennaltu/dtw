@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://bchcxvqn8fmqj"]
+
+[ext_resource type="Script" uid="uid://cinimpi1dlebe" path="res://src/data/skill.gd" id="1_4qbhe"]
+
+[resource]
+script = ExtResource("1_4qbhe")
+skill_name = "Stab"
+skill_element = 1
+sp_cost = 3
+metadata/_custom_type_script = "uid://cinimpi1dlebe"

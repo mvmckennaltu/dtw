@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://bb45xerku0n5o"]
+
+[ext_resource type="Script" uid="uid://cinimpi1dlebe" path="res://src/data/skill.gd" id="1_oq0tx"]
+
+[resource]
+script = ExtResource("1_oq0tx")
+skill_name = "Melee Attack"
+metadata/_custom_type_script = "uid://cinimpi1dlebe"
