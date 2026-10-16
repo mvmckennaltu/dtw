@@ -49,6 +49,7 @@ func open_skill_menu(battler: Battler) -> void:
 
 	strategy_menu.hide()
 	skill_menu.show()
+	$SkillMenu/VBoxContainer/BackButton.grab_focus()
 
 
 func open_order_menu() -> void:

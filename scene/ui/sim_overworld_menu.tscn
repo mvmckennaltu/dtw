@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://c06wft8v4hfd7"]
+
+[ext_resource type="Script" uid="uid://ccjqtnbrist6x" path="res://src/ui/sim_overworld_menu_control.gd" id="1_sm6go"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_sm6go"]
+
+[node name="SimOverworldMenuControl" type="Control" unique_id=474997278]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sm6go")
+
+[node name="MainOverworldMenu" type="PanelContainer" parent="." unique_id=899057197]
+layout_mode = 0
+offset_right = 203.0
+offset_bottom = 315.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainOverworldMenu" unique_id=1795976752]
+layout_mode = 2
+
+[node name="EnterDungeonButton" type="Button" parent="MainOverworldMenu/VBoxContainer" unique_id=69897076]
+layout_mode = 2
+text = "Enter Dungeon"
+
+[node name="ShopButton" type="Button" parent="MainOverworldMenu/VBoxContainer" unique_id=959524496]
+layout_mode = 2
+text = "Enter Shop"
+
+[node name="ShopMenu" type="PanelContainer" parent="." unique_id=1923676065]
+visible = false
+custom_maximum_size = Vector2(200, 800)
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 136.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ShopMenu" unique_id=730882626]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ShopMenu/VBoxContainer" unique_id=286846769]
+layout_mode = 2
+text = "The shop is currently under construction. Come back later in development!"
+label_settings = SubResource("LabelSettings_sm6go")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="BackButton" type="Button" parent="ShopMenu/VBoxContainer" unique_id=1282002252]
+layout_mode = 2
+text = "Back"
+
+[connection signal="pressed" from="MainOverworldMenu/VBoxContainer/EnterDungeonButton" to="." method="_on_enter_dungeon_button_pressed"]
+[connection signal="pressed" from="MainOverworldMenu/VBoxContainer/ShopButton" to="." method="_on_shop_button_pressed"]
+[connection signal="pressed" from="ShopMenu/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
