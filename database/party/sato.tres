@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="CharacterData" format=3 uid="uid://b1qq0go72fkxm"]
+
+[ext_resource type="Script" uid="uid://cl3m27c5m26sw" path="res://src/data/character_data.gd" id="1_l2mox"]
+
+[resource]
+script = ExtResource("1_l2mox")
+character_name = "Ponoparko"
+metadata/_custom_type_script = "uid://cl3m27c5m26sw"

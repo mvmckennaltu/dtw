@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="CharacterState" format=3 uid="uid://dbrubrnvf18eg"]
+
+[ext_resource type="Script" uid="uid://bu7gc3pabhpkv" path="res://src/data/character_state.gd" id="1_hpss6"]
+[ext_resource type="Script" uid="uid://dvsb2w3h0up14" path="res://src/data/saccel.gd" id="2_3gtsd"]
+
+[resource]
+script = ExtResource("1_hpss6")
+metadata/_custom_type_script = "uid://bu7gc3pabhpkv"
