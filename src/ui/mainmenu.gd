@@ -57,19 +57,38 @@ func show_screen(screen: MenuScreen) -> void:
 				var first_button = vbox.get_child(0)
 				if first_button != null:
 					first_button.grab_focus()
+			elif vbox is ScrollContainer:
+				var nested_vbox = vbox.get_child(0)
+				var the_button = nested_vbox.get_child(0)
+				the_button.grab_focus()
 		
 	current_screen = screen
 	menu_stack.push_front(screen)
 func return_to_previous_menu():
 	menu_stack.pop_front()
 	show_screen(menu_stack[0])
+	
+func show_items():
+	var index = 0
+	var values = PersistentInventory.consumables.values()
+	for child in $MenuPanel/VBoxContainer/Content/ItemsMenu/ScrollContainer/VBoxContainer.get_children():
+		if child.has_meta("Item"):
+			child.queue_free()
+	for item in PersistentInventory.get_items():
+		var button = Button.new()
+		var insert_index := 0
+		print(item.item_name)
+		button.text = item.item_name + ": " + str(values[index])
+		index + 1
+		$MenuPanel/VBoxContainer/Content/ItemsMenu/ScrollContainer/VBoxContainer.add_child(button)
+		button.set_meta("Item", true)
 func _on_skills_button_pressed() -> void:
 	show_screen(MenuScreen.SKILLS)
 
 
 func _on_items_button_pressed() -> void:
 	show_screen(MenuScreen.ITEMS)
-
+	show_items()
 
 func _on_s_accel_button_pressed() -> void:
 	show_screen(MenuScreen.SACCEL)
@@ -97,3 +116,32 @@ func _on_sys_button_pressed() -> void:
 
 func _on_skills_back_pressed() -> void:
 	return_to_previous_menu()
+
+
+func _on_items_back_pressed() -> void:
+	return_to_previous_menu()
+
+
+func _on_s_accel_back_pressed() -> void:
+	return_to_previous_menu()
+
+
+func _on_stats_back_pressed() -> void:
+	return_to_previous_menu()
+
+
+func _on_save_back_pressed() -> void:
+	return_to_previous_menu()
+
+
+func _on_load_back_pressed() -> void:
+	return_to_previous_menu()
+
+
+func _on_sys_back_pressed() -> void:
+	return_to_previous_menu()
+	
+
+
+func _on_equipment_back_pressed() -> void:
+		return_to_previous_menu()

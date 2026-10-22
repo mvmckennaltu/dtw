@@ -140,6 +140,7 @@ layout_mode = 2
 text = "Back"
 
 [node name="ItemsMenu" type="Control" parent="MenuPanel/VBoxContainer/Content" unique_id=298282109]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -168,9 +169,9 @@ layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="Button" type="Button" parent="MenuPanel/VBoxContainer/Content/ItemsMenu/ScrollContainer/VBoxContainer" unique_id=1806909643]
+[node name="ItemsBack" type="Button" parent="MenuPanel/VBoxContainer/Content/ItemsMenu/ScrollContainer/VBoxContainer" unique_id=1806909643]
 layout_mode = 2
-text = "Dummy"
+text = "Back"
 
 [node name="EquipmentMenu" type="Control" parent="MenuPanel/VBoxContainer/Content" unique_id=171427113]
 visible = false
@@ -188,9 +189,20 @@ menu_label = "Equipment"
 metadata/_custom_type_script = "uid://cg7sglte42hsn"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuPanel/VBoxContainer/Content/EquipmentMenu" unique_id=502402974]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -120.0
+offset_right = 130.0
+offset_bottom = 31.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="EquipmentBack" type="Button" parent="MenuPanel/VBoxContainer/Content/EquipmentMenu/VBoxContainer" unique_id=1130512651]
+layout_mode = 2
+text = "Back"
 
 [node name="SAccelMenu" type="Control" parent="MenuPanel/VBoxContainer/Content" unique_id=1512419570]
 visible = false
@@ -208,9 +220,20 @@ menu_label = "Soul Accelerator"
 metadata/_custom_type_script = "uid://cg7sglte42hsn"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuPanel/VBoxContainer/Content/SAccelMenu" unique_id=2118716709]
-layout_mode = 0
-offset_right = 40.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -120.0
+offset_right = 130.0
 offset_bottom = 40.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="SAccelBack" type="Button" parent="MenuPanel/VBoxContainer/Content/SAccelMenu/VBoxContainer" unique_id=461959511]
+layout_mode = 2
+text = "Back"
 
 [node name="StatsMenu" type="Control" parent="MenuPanel/VBoxContainer/Content" unique_id=1727558946]
 visible = false
@@ -229,8 +252,15 @@ metadata/_custom_type_script = "uid://cg7sglte42hsn"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuPanel/VBoxContainer/Content/StatsMenu" unique_id=135864667]
 layout_mode = 0
-offset_right = 40.0
+offset_left = -100.0
+offset_right = 150.0
 offset_bottom = 40.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="StatsBack" type="Button" parent="MenuPanel/VBoxContainer/Content/StatsMenu/VBoxContainer" unique_id=1744920556]
+layout_mode = 2
+text = "Back"
 
 [node name="SaveMenu" type="Control" parent="MenuPanel/VBoxContainer/Content" unique_id=981337178]
 visible = false
@@ -249,8 +279,15 @@ metadata/_custom_type_script = "uid://cg7sglte42hsn"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuPanel/VBoxContainer/Content/SaveMenu" unique_id=1071309025]
 layout_mode = 0
-offset_right = 40.0
+offset_left = -100.0
+offset_right = 150.0
 offset_bottom = 40.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="SaveBack" type="Button" parent="MenuPanel/VBoxContainer/Content/SaveMenu/VBoxContainer" unique_id=1394415403]
+layout_mode = 2
+text = "Back"
 
 [node name="LoadMenu" type="Control" parent="MenuPanel/VBoxContainer/Content" unique_id=2087164759]
 visible = false
@@ -269,8 +306,15 @@ metadata/_custom_type_script = "uid://cg7sglte42hsn"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuPanel/VBoxContainer/Content/LoadMenu" unique_id=1756996453]
 layout_mode = 0
-offset_right = 40.0
+offset_left = -100.0
+offset_right = 150.0
 offset_bottom = 40.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="LoadBack" type="Button" parent="MenuPanel/VBoxContainer/Content/LoadMenu/VBoxContainer" unique_id=628478253]
+layout_mode = 2
+text = "Back"
 
 [node name="SystemMenu" type="Control" parent="MenuPanel/VBoxContainer/Content" unique_id=582211539]
 visible = false
@@ -289,8 +333,15 @@ metadata/_custom_type_script = "uid://cg7sglte42hsn"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuPanel/VBoxContainer/Content/SystemMenu" unique_id=799836327]
 layout_mode = 0
-offset_right = 40.0
+offset_left = -100.0
+offset_right = 150.0
 offset_bottom = 40.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="SysBack" type="Button" parent="MenuPanel/VBoxContainer/Content/SystemMenu/VBoxContainer" unique_id=954486427]
+layout_mode = 2
+text = "Back"
 
 [connection signal="pressed" from="MenuPanel/VBoxContainer/Content/TopMenu/VBoxContainer/SkillsButton" to="." method="_on_skills_button_pressed"]
 [connection signal="pressed" from="MenuPanel/VBoxContainer/Content/TopMenu/VBoxContainer/ItemsButton" to="." method="_on_items_button_pressed"]
@@ -301,3 +352,10 @@ offset_bottom = 40.0
 [connection signal="pressed" from="MenuPanel/VBoxContainer/Content/TopMenu/VBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]
 [connection signal="pressed" from="MenuPanel/VBoxContainer/Content/TopMenu/VBoxContainer/SysButton" to="." method="_on_sys_button_pressed"]
 [connection signal="pressed" from="MenuPanel/VBoxContainer/Content/SkillsMenu/VBoxContainer/SkillsBack" to="." method="_on_skills_back_pressed"]
+[connection signal="pressed" from="MenuPanel/VBoxContainer/Content/ItemsMenu/ScrollContainer/VBoxContainer/ItemsBack" to="." method="_on_items_back_pressed"]
+[connection signal="pressed" from="MenuPanel/VBoxContainer/Content/EquipmentMenu/VBoxContainer/EquipmentBack" to="." method="_on_equipment_back_pressed"]
+[connection signal="pressed" from="MenuPanel/VBoxContainer/Content/SAccelMenu/VBoxContainer/SAccelBack" to="." method="_on_s_accel_back_pressed"]
+[connection signal="pressed" from="MenuPanel/VBoxContainer/Content/StatsMenu/VBoxContainer/StatsBack" to="." method="_on_stats_back_pressed"]
+[connection signal="pressed" from="MenuPanel/VBoxContainer/Content/SaveMenu/VBoxContainer/SaveBack" to="." method="_on_save_back_pressed"]
+[connection signal="pressed" from="MenuPanel/VBoxContainer/Content/LoadMenu/VBoxContainer/LoadBack" to="." method="_on_load_back_pressed"]
+[connection signal="pressed" from="MenuPanel/VBoxContainer/Content/SystemMenu/VBoxContainer/SysBack" to="." method="_on_sys_back_pressed"]

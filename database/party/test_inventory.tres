@@ -3,13 +3,15 @@
 [ext_resource type="Script" uid="uid://vjc0thqqfq4i" path="res://src/data/consumable.gd" id="1_3t7nq"]
 [ext_resource type="Script" uid="uid://yotuo14bnvib" path="res://src/data/main_inventory.gd" id="1_jw7hd"]
 
-[sub_resource type="Resource" id="Resource_6830b"]
+[sub_resource type="Resource" id="Resource_5rm31"]
 script = ExtResource("1_3t7nq")
+is_usable_on_field = true
+item_name = "Potion"
 metadata/_custom_type_script = "uid://vjc0thqqfq4i"
 
 [resource]
 script = ExtResource("1_jw7hd")
 consumable_inventory = {
-SubResource("Resource_6830b"): 5
+SubResource("Resource_5rm31"): 5
 }
 metadata/_custom_type_script = "uid://yotuo14bnvib"
