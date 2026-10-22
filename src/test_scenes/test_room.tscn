@@ -3,8 +3,15 @@
 [ext_resource type="PackedScene" uid="uid://dqexnyj5tja1l" path="res://scene/player/dungeon_player.tscn" id="1_ncluu"]
 [ext_resource type="PackedScene" uid="uid://bqp4ljtilbjec" path="res://scene/ui/mainmenu.tscn" id="2_ffy62"]
 [ext_resource type="PackedScene" uid="uid://1wwgf2v1j2t7" path="res://scene/enemy/dungeon_test_enemy.tscn" id="3_m5mbk"]
+[ext_resource type="PackedScene" uid="uid://21w4c3qrna1b" path="res://scene/enemy/dungeon_test_item.tscn" id="4_ncluu"]
+[ext_resource type="Script" uid="uid://vjc0thqqfq4i" path="res://src/data/consumable.gd" id="5_uhif6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ffy62"]
+
+[sub_resource type="Resource" id="Resource_uhif6"]
+script = ExtResource("5_uhif6")
+item_name = "Dingus"
+metadata/_custom_type_script = "uid://vjc0thqqfq4i"
 
 [node name="TestDungeon" type="Node3D" unique_id=557933789]
 
@@ -45,6 +52,9 @@ collision_layer = 8
 collision_mask = 15
 size = Vector3(1, 10, 20)
 
+[node name="Node3D" parent="." unique_id=114979189 instance=ExtResource("3_m5mbk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22052276, 0.87805444, -2.8297248)
+
 [node name="DungeonPlayer" parent="." unique_id=1457069709 instance=ExtResource("1_ncluu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0046635, 0)
 
@@ -55,5 +65,6 @@ follow_viewport_enabled = true
 visible = false
 remember_last_menu_option = true
 
-[node name="Node3D" parent="CanvasLayer" unique_id=114979189 instance=ExtResource("3_m5mbk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22052276, 0.87805444, -2.8297248)
+[node name="DungeonItem" parent="." unique_id=749007445 instance=ExtResource("4_ncluu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5840225, 0.4340002, -1.881052)
+item = SubResource("Resource_uhif6")

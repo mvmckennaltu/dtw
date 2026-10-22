@@ -59,7 +59,11 @@ func _on_area_3d_area_entered(area: Area3D) -> void:
 	var source = area.get_parent()
 	if area.collision_layer == 2:
 		print("oh shit an enemy")
-	start_encounter(source)
+		start_encounter(source)
+	elif area.collision_layer == 4:
+		print("yoooo an item")
+		if source is DungeonItem:
+			source.add_to_inv()
 	
 	
 func start_encounter(Node3D):

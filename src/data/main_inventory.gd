@@ -24,6 +24,7 @@ func add_consumable_item_to_inventory(item: Consumable, number_to_add: int):
 	else:
 		if number_to_add <= 255:
 			consumable_inventory[item] = number_to_add
+			print("Added " + str(number_to_add) + " items to inventory")
 		else:
 			consumable_inventory[item] = 255
 func add_equippable_item_to_inventory(item: Equipment, number_to_add: int):

@@ -79,9 +79,14 @@ func show_items():
 		var insert_index := 0
 		print(item.item_name)
 		button.text = item.item_name + ": " + str(values[index])
-		index + 1
+		print(str(index))
+		index = index + 1
 		$MenuPanel/VBoxContainer/Content/ItemsMenu/ScrollContainer/VBoxContainer.add_child(button)
+		$MenuPanel/VBoxContainer/Content/ItemsMenu/ScrollContainer/VBoxContainer.move_child(button, insert_index)
 		button.set_meta("Item", true)
+		insert_index = insert_index + 1
+		var first_item = $MenuPanel/VBoxContainer/Content/ItemsMenu/ScrollContainer/VBoxContainer.get_child(0)
+		first_item.grab_focus()
 func _on_skills_button_pressed() -> void:
 	show_screen(MenuScreen.SKILLS)
 
@@ -144,4 +149,4 @@ func _on_sys_back_pressed() -> void:
 
 
 func _on_equipment_back_pressed() -> void:
-		return_to_previous_menu()
+	return_to_previous_menu()
