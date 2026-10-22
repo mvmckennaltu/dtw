@@ -53,6 +53,7 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="TopMenu" type="Control" parent="MenuPanel/VBoxContainer/Content" unique_id=1349977051]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -123,18 +124,22 @@ menu_screen = 1
 menu_label = "Skills"
 metadata/_custom_type_script = "uid://cg7sglte42hsn"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MenuPanel/VBoxContainer/Content/SkillsMenu" unique_id=110859526]
-visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuPanel/VBoxContainer/Content/SkillsMenu" unique_id=191580112]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -125.0
+offset_right = 125.0
+offset_bottom = 31.0
+grow_horizontal = 2
+theme_override_constants/separation = 20
 
-[node name="Button" type="Button" parent="MenuPanel/VBoxContainer/Content/SkillsMenu/VBoxContainer" unique_id=432647956]
+[node name="SkillsBack" type="Button" parent="MenuPanel/VBoxContainer/Content/SkillsMenu/VBoxContainer" unique_id=1341918572]
 layout_mode = 2
-text = "Aerie"
+text = "Back"
 
 [node name="ItemsMenu" type="Control" parent="MenuPanel/VBoxContainer/Content" unique_id=298282109]
-visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -148,11 +153,24 @@ menu_screen = 2
 menu_label = "Items"
 metadata/_custom_type_script = "uid://cg7sglte42hsn"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MenuPanel/VBoxContainer/Content/ItemsMenu" unique_id=111298732]
-visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="ScrollContainer" type="ScrollContainer" parent="MenuPanel/VBoxContainer/Content/ItemsMenu" unique_id=550577984]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -125.0
+offset_right = 125.0
+offset_bottom = 388.0
+grow_horizontal = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuPanel/VBoxContainer/Content/ItemsMenu/ScrollContainer" unique_id=111298732]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Button" type="Button" parent="MenuPanel/VBoxContainer/Content/ItemsMenu/ScrollContainer/VBoxContainer" unique_id=1806909643]
+layout_mode = 2
+text = "Dummy"
 
 [node name="EquipmentMenu" type="Control" parent="MenuPanel/VBoxContainer/Content" unique_id=171427113]
 visible = false
@@ -170,7 +188,6 @@ menu_label = "Equipment"
 metadata/_custom_type_script = "uid://cg7sglte42hsn"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuPanel/VBoxContainer/Content/EquipmentMenu" unique_id=502402974]
-visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -191,7 +208,6 @@ menu_label = "Soul Accelerator"
 metadata/_custom_type_script = "uid://cg7sglte42hsn"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuPanel/VBoxContainer/Content/SAccelMenu" unique_id=2118716709]
-visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -212,7 +228,6 @@ menu_label = "Stats"
 metadata/_custom_type_script = "uid://cg7sglte42hsn"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuPanel/VBoxContainer/Content/StatsMenu" unique_id=135864667]
-visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -233,7 +248,6 @@ menu_label = "Save"
 metadata/_custom_type_script = "uid://cg7sglte42hsn"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuPanel/VBoxContainer/Content/SaveMenu" unique_id=1071309025]
-visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -254,7 +268,6 @@ menu_label = "Load"
 metadata/_custom_type_script = "uid://cg7sglte42hsn"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuPanel/VBoxContainer/Content/LoadMenu" unique_id=1756996453]
-visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -275,7 +288,6 @@ menu_label = "System"
 metadata/_custom_type_script = "uid://cg7sglte42hsn"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuPanel/VBoxContainer/Content/SystemMenu" unique_id=799836327]
-visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -288,3 +300,4 @@ offset_bottom = 40.0
 [connection signal="pressed" from="MenuPanel/VBoxContainer/Content/TopMenu/VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
 [connection signal="pressed" from="MenuPanel/VBoxContainer/Content/TopMenu/VBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]
 [connection signal="pressed" from="MenuPanel/VBoxContainer/Content/TopMenu/VBoxContainer/SysButton" to="." method="_on_sys_button_pressed"]
+[connection signal="pressed" from="MenuPanel/VBoxContainer/Content/SkillsMenu/VBoxContainer/SkillsBack" to="." method="_on_skills_back_pressed"]

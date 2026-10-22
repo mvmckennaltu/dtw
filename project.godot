@@ -24,6 +24,7 @@ config/icon="res://icon.svg"
 Dialogic="*uid://ds2q0uclmolvu"
 PhantomCameraManager="*uid://duq6jhf6unyis"
 Juicee="*uid://b36fwfvmmv0xc"
+PersistentInventory="*uid://ckceppapc80vu"
 
 [dialogic]
 

@@ -19,6 +19,7 @@ func _ready() -> void:
 			menu_screens.append(child)
 
 	show_screen(MenuScreen.TOP)
+	PersistentInventory.print_items()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("open_main_menu"):
@@ -27,6 +28,7 @@ func _process(_delta: float) -> void:
 		else:
 			if current_screen == MenuScreen.TOP:
 				deactivate_menu()
+	
 func activate_menu():
 	visible = true
 	get_tree().paused = true
@@ -50,9 +52,17 @@ func show_screen(screen: MenuScreen) -> void:
 		
 		if is_selected:
 			header_text.text = menu.menu_label
-
+			var vbox = menu.get_child(0)
+			if vbox is VBoxContainer:
+				var first_button = vbox.get_child(0)
+				if first_button != null:
+					first_button.grab_focus()
+		
 	current_screen = screen
-
+	menu_stack.push_front(screen)
+func return_to_previous_menu():
+	menu_stack.pop_front()
+	show_screen(menu_stack[0])
 func _on_skills_button_pressed() -> void:
 	show_screen(MenuScreen.SKILLS)
 
@@ -83,3 +93,7 @@ func _on_load_button_pressed() -> void:
 
 func _on_sys_button_pressed() -> void:
 	show_screen(MenuScreen.SYSTEM)
+
+
+func _on_skills_back_pressed() -> void:
+	return_to_previous_menu()
