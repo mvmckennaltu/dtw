@@ -5,4 +5,5 @@
 [resource]
 script = ExtResource("1_oq0tx")
 skill_name = "Melee Attack"
+is_weapon = true
 metadata/_custom_type_script = "uid://cinimpi1dlebe"

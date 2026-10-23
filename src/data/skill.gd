@@ -12,7 +12,7 @@ enum SkillType {
 @export var skill_name: String = ""
 @export var skill_element: Elements.ElementType = Elements.ElementType.BLUNT
 @export var skill_type: SkillType = SkillType.ATTACK
-
+@export var is_weapon : bool = false
 @export_group("Cost and Power")
 @export var power: float = 1.0
 @export var sp_cost: int = 0

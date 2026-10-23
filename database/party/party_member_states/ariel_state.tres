@@ -1,8 +1,42 @@
 [gd_resource type="Resource" script_class="CharacterState" format=3 uid="uid://sdyjssyedjq6"]
 
 [ext_resource type="Script" uid="uid://bu7gc3pabhpkv" path="res://src/data/character_state.gd" id="1_2dkdt"]
+[ext_resource type="Script" uid="uid://cen0l5ytwt6r0" path="res://src/data/equipment.gd" id="1_2jur0"]
+[ext_resource type="Resource" uid="uid://b1tbocqinxbt" path="res://database/party/ariel.tres" id="1_ikcv2"]
 [ext_resource type="Script" uid="uid://dvsb2w3h0up14" path="res://src/data/saccel.gd" id="2_ikcv2"]
+[ext_resource type="Resource" uid="uid://dpl0n5phgwuam" path="res://database/saccel/test_saccel.tres" id="2_mtovo"]
+[ext_resource type="Script" uid="uid://vqc825akva8m" path="res://src/data/armor.gd" id="2_pxurq"]
+[ext_resource type="Resource" uid="uid://dv6650xw5qwxh" path="res://database/saccel/test_saccel2.tres" id="5_ljad3"]
+[ext_resource type="Script" uid="uid://b6ea0wpdc3tt0" path="res://src/data/weapon.gd" id="5_xlhfm"]
+
+[sub_resource type="Resource" id="Resource_ff64c"]
+script = ExtResource("1_2jur0")
+item_name = "Aerie's Charm"
+metadata/_custom_type_script = "uid://cen0l5ytwt6r0"
+
+[sub_resource type="Resource" id="Resource_5rm31"]
+script = ExtResource("2_pxurq")
+item_name = "Heavens Uniform"
+metadata/_custom_type_script = "uid://vqc825akva8m"
+
+[sub_resource type="Resource" id="Resource_csoam"]
+script = ExtResource("5_xlhfm")
+item_name = "Crossbow"
+metadata/_custom_type_script = "uid://b6ea0wpdc3tt0"
+
+[sub_resource type="Resource" id="Resource_n6s1u"]
+script = ExtResource("5_xlhfm")
+item_name = "Dagger"
+metadata/_custom_type_script = "uid://b6ea0wpdc3tt0"
 
 [resource]
 script = ExtResource("1_2dkdt")
+definition = ExtResource("1_ikcv2")
+armor = SubResource("Resource_5rm31")
+weapon = SubResource("Resource_n6s1u")
+accessory = SubResource("Resource_ff64c")
+gun = SubResource("Resource_csoam")
+soul_accelerators = Array[ExtResource("2_ikcv2")]([ExtResource("2_mtovo"), ExtResource("5_ljad3")])
+equipped_saccel = ExtResource("2_mtovo")
+equipment = null
 metadata/_custom_type_script = "uid://bu7gc3pabhpkv"

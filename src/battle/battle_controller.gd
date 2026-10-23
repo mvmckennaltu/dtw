@@ -421,12 +421,9 @@ func execute_skill_damage(
 
 	if target == null:
 		return
-
-	var raw_damage := maxi(
-		1,
-		int(attack_stat * skill.power) - target.DEF
-	)
-
+	var damage_power = pow((attacker.STR+skill.power),2)
+	var damage_calc = damage_power/(target.DEF)
+	var raw_damage := maxi(1,damage_calc)
 	var affinity: int = get_target_affinity(
 		target,
 		skill.skill_element
@@ -548,6 +545,8 @@ func end_battle(player_won: bool) -> void:
 		var message := "Everyone got {0} XP!"
 		update_message_text.emit("Everyone got " + str(victory_xp) + " XP!" )
 		await get_tree().create_timer(0.5).timeout
+		obtain_item_drops()
+		await get_tree().create_timer(0.5).timeout
 		exit_to_dungeon()
 	else:
 		battle_state = BattleState.DEFEAT
@@ -565,6 +564,15 @@ func exit_to_dungeon():
 	get_tree().change_scene_to_file("uid://hi10d8yc4oxf")
 	Fade.fade_in(1,Color(1,1,1,1))
 
+func obtain_item_drops() -> void:
+	var item_drops: Dictionary = encounter.item_drops
+	var inventory = PersistentInventory.main_inventory
+	if item_drops != null:
+		for item in item_drops:
+			var amount: int = item_drops[item]
+			inventory.add_item_to_inventory(item, amount)
+			update_message_text.emit("You got " + str(amount) + "x " + item.item_name)
+			await get_tree().create_timer(0.3).timeout
 
 ## UI callbacks
 

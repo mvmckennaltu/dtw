@@ -10,11 +10,20 @@ extends Resource
 @export var current_hp: int = 0
 @export var current_sp: int = 0
 
-@export var equipment: Array[Resource] = []
+@export var armor : Armor
+@export var weapon: Weapon
+@export var accessory: Equipment
+@export var gun : Equipment
 @export var soul_accelerators: Array[SAccel] = []
 @export var equipped_saccel: SAccel
-
-
+@export var equipment : Array[Equipment]
+func _ready():
+	if soul_accelerators != null:
+		for saccel in soul_accelerators:
+			if saccel == equipped_saccel:
+				saccel.set_meta("equipped", true)
+				return
+	equipment = [armor, weapon, accessory, gun]
 func equip_saccel(saccel: SAccel) -> bool:
 	# The character must actually own this SAccel.
 	if saccel == null:
@@ -24,6 +33,7 @@ func equip_saccel(saccel: SAccel) -> bool:
 		return false
 
 	equipped_saccel = saccel
+	saccel.set_meta("equipped", true)
 	return true
 
 

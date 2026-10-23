@@ -1,8 +1,14 @@
 [gd_resource type="Resource" script_class="CharacterState" format=3 uid="uid://c08xthhotewdn"]
 
+[ext_resource type="Resource" uid="uid://bbclhs11p3e6k" path="res://database/party/chako.tres" id="1_1w7gc"]
 [ext_resource type="Script" uid="uid://bu7gc3pabhpkv" path="res://src/data/character_state.gd" id="1_de24y"]
 [ext_resource type="Script" uid="uid://dvsb2w3h0up14" path="res://src/data/saccel.gd" id="2_1w7gc"]
+[ext_resource type="Resource" uid="uid://dpl0n5phgwuam" path="res://database/saccel/test_saccel.tres" id="2_xntea"]
+[ext_resource type="Resource" uid="uid://dv6650xw5qwxh" path="res://database/saccel/test_saccel2.tres" id="5_1qmie"]
 
 [resource]
 script = ExtResource("1_de24y")
+definition = ExtResource("1_1w7gc")
+soul_accelerators = Array[ExtResource("2_1w7gc")]([ExtResource("5_1qmie")])
+equipped_saccel = ExtResource("2_xntea")
 metadata/_custom_type_script = "uid://bu7gc3pabhpkv"

@@ -1,8 +1,12 @@
 [gd_resource type="Resource" script_class="CharacterState" format=3 uid="uid://bmh0vtivq7jr4"]
 
+[ext_resource type="Resource" uid="uid://bef4isbxarrht" path="res://database/party/victoria.tres" id="1_bv7bh"]
 [ext_resource type="Script" uid="uid://bu7gc3pabhpkv" path="res://src/data/character_state.gd" id="1_oabf2"]
 [ext_resource type="Script" uid="uid://dvsb2w3h0up14" path="res://src/data/saccel.gd" id="2_bv7bh"]
+[ext_resource type="Resource" uid="uid://dpl0n5phgwuam" path="res://database/saccel/test_saccel.tres" id="2_dpi6k"]
 
 [resource]
 script = ExtResource("1_oabf2")
+definition = ExtResource("1_bv7bh")
+equipped_saccel = ExtResource("2_dpi6k")
 metadata/_custom_type_script = "uid://bu7gc3pabhpkv"

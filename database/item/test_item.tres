@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Consumable" format=3 uid="uid://djb2ug6a0cjd1"]
+
+[ext_resource type="Script" uid="uid://vjc0thqqfq4i" path="res://src/data/consumable.gd" id="1_f6fl7"]
+
+[resource]
+script = ExtResource("1_f6fl7")
+item_name = "Orb of Doom and Despair"
+metadata/_custom_type_script = "uid://vjc0thqqfq4i"

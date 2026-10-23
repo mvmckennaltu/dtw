@@ -343,6 +343,60 @@ alignment = 1
 layout_mode = 2
 text = "Back"
 
+[node name="CharacterSAccelsMenu" type="Control" parent="MenuPanel/VBoxContainer/Content" unique_id=1583699756]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+script = ExtResource("3_n6s1u")
+menu_screen = 9
+menu_label = "SACCEL"
+metadata/_custom_type_script = "uid://cg7sglte42hsn"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuPanel/VBoxContainer/Content/CharacterSAccelsMenu" unique_id=665482654]
+layout_mode = 0
+offset_left = -100.0
+offset_right = 150.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="CharaSAccelBack" type="Button" parent="MenuPanel/VBoxContainer/Content/CharacterSAccelsMenu/VBoxContainer" unique_id=134028073]
+layout_mode = 2
+text = "Back"
+
+[node name="CharacterEquipmentMenu" type="Control" parent="MenuPanel/VBoxContainer/Content" unique_id=44745040]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+script = ExtResource("3_n6s1u")
+menu_screen = 10
+menu_label = "CURRENT_CHAR"
+metadata/_custom_type_script = "uid://cg7sglte42hsn"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuPanel/VBoxContainer/Content/CharacterEquipmentMenu" unique_id=1447457509]
+layout_mode = 0
+offset_left = -100.0
+offset_right = 150.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="CharaEquipBack" type="Button" parent="MenuPanel/VBoxContainer/Content/CharacterEquipmentMenu/VBoxContainer" unique_id=1259899825]
+layout_mode = 2
+text = "Back"
+
 [connection signal="pressed" from="MenuPanel/VBoxContainer/Content/TopMenu/VBoxContainer/SkillsButton" to="." method="_on_skills_button_pressed"]
 [connection signal="pressed" from="MenuPanel/VBoxContainer/Content/TopMenu/VBoxContainer/ItemsButton" to="." method="_on_items_button_pressed"]
 [connection signal="pressed" from="MenuPanel/VBoxContainer/Content/TopMenu/VBoxContainer/EquipmentButton" to="." method="_on_equipment_button_pressed"]
@@ -359,3 +413,5 @@ text = "Back"
 [connection signal="pressed" from="MenuPanel/VBoxContainer/Content/SaveMenu/VBoxContainer/SaveBack" to="." method="_on_save_back_pressed"]
 [connection signal="pressed" from="MenuPanel/VBoxContainer/Content/LoadMenu/VBoxContainer/LoadBack" to="." method="_on_load_back_pressed"]
 [connection signal="pressed" from="MenuPanel/VBoxContainer/Content/SystemMenu/VBoxContainer/SysBack" to="." method="_on_sys_back_pressed"]
+[connection signal="pressed" from="MenuPanel/VBoxContainer/Content/CharacterSAccelsMenu/VBoxContainer/CharaSAccelBack" to="." method="_on_chara_s_accel_back_pressed"]
+[connection signal="pressed" from="MenuPanel/VBoxContainer/Content/CharacterEquipmentMenu/VBoxContainer/CharaEquipBack" to="." method="_on_chara_s_accel_back_pressed"]

@@ -4,10 +4,11 @@
 [ext_resource type="Script" uid="uid://d2v2k63tiahp7" path="res://src/data/stats.gd" id="2_66ogu"]
 [ext_resource type="Resource" uid="uid://b4fto8x8kjw0r" path="res://database/enemy/test_enemy.tres" id="2_km5tw"]
 [ext_resource type="Script" uid="uid://ca7xtpj4vesyl" path="res://src/data/encounter.gd" id="2_x2fkm"]
+[ext_resource type="Resource" uid="uid://djb2ug6a0cjd1" path="res://database/item/test_item.tres" id="4_66ogu"]
 
 [sub_resource type="Resource" id="Resource_3db21"]
 script = ExtResource("2_66ogu")
-max_HP = 8
+max_HP = 55
 DEF = 2
 metadata/_custom_type_script = "uid://d2v2k63tiahp7"
 
@@ -21,4 +22,7 @@ metadata/_custom_type_script = "uid://bj18lqeosw4vg"
 [resource]
 script = ExtResource("2_x2fkm")
 enemies = Array[ExtResource("1_fndcj")]([SubResource("Resource_tt0s5"), ExtResource("2_km5tw")])
+item_drops = {
+ExtResource("4_66ogu"): 3
+}
 metadata/_custom_type_script = "uid://ca7xtpj4vesyl"

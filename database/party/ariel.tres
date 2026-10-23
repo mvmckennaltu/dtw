@@ -1,8 +1,13 @@
 [gd_resource type="Resource" script_class="CharacterData" format=3 uid="uid://b1tbocqinxbt"]
 
 [ext_resource type="Script" uid="uid://cl3m27c5m26sw" path="res://src/data/character_data.gd" id="1_lqnke"]
+[ext_resource type="Resource" uid="uid://d2j6pq1fyvcwh" path="res://database/party/stat_blocks/ariel_stats.tres" id="1_nxukq"]
+[ext_resource type="Resource" uid="uid://bb45xerku0n5o" path="res://database/skill/test_melee.tres" id="2_7yiy5"]
 
 [resource]
 script = ExtResource("1_lqnke")
 character_name = "Aerie"
+base_stats = ExtResource("1_nxukq")
+default_saccel = "Valerie"
+melee_skill = ExtResource("2_7yiy5")
 metadata/_custom_type_script = "uid://cl3m27c5m26sw"

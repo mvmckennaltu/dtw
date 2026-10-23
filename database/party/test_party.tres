@@ -1,9 +1,14 @@
 [gd_resource type="Resource" script_class="Party" format=3 uid="uid://bad0rnyjjj5bn"]
 
 [ext_resource type="Script" uid="uid://bu7gc3pabhpkv" path="res://src/data/character_state.gd" id="1_qu66m"]
+[ext_resource type="Resource" uid="uid://sdyjssyedjq6" path="res://database/party/party_member_states/ariel_state.tres" id="2_ej3kg"]
 [ext_resource type="Script" uid="uid://dawvds2t0qj4y" path="res://src/data/party.gd" id="2_tm1ky"]
+[ext_resource type="Resource" uid="uid://db04xolffyylu" path="res://database/party/party_member_states/sato_state.tres" id="3_mxk6s"]
+[ext_resource type="Resource" uid="uid://dbrubrnvf18eg" path="res://database/party/party_member_states/mona_state.tres" id="4_lrbvf"]
+[ext_resource type="Resource" uid="uid://c08xthhotewdn" path="res://database/party/party_member_states/chako_state.tres" id="5_l5tgl"]
+[ext_resource type="Resource" uid="uid://bmh0vtivq7jr4" path="res://database/party/party_member_states/victoria_state.tres" id="6_owrnl"]
 
 [resource]
 script = ExtResource("2_tm1ky")
-members = Array[ExtResource("1_qu66m")]([null, null, null, null, null])
+members = Array[ExtResource("1_qu66m")]([ExtResource("2_ej3kg"), ExtResource("3_mxk6s"), ExtResource("4_lrbvf"), ExtResource("5_l5tgl"), ExtResource("6_owrnl")])
 metadata/_custom_type_script = "uid://dawvds2t0qj4y"

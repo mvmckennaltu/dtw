@@ -1,8 +1,12 @@
 [gd_resource type="Resource" script_class="CharacterData" format=3 uid="uid://bef4isbxarrht"]
 
+[ext_resource type="Resource" uid="uid://tr2h3a3sfvbo" path="res://database/party/stat_blocks/victoria_stats.tres" id="1_ompy7"]
 [ext_resource type="Script" uid="uid://cl3m27c5m26sw" path="res://src/data/character_data.gd" id="1_q787m"]
+[ext_resource type="Resource" uid="uid://bb45xerku0n5o" path="res://database/skill/test_melee.tres" id="2_2ywc2"]
 
 [resource]
 script = ExtResource("1_q787m")
 character_name = "Veil"
+base_stats = ExtResource("1_ompy7")
+melee_skill = ExtResource("2_2ywc2")
 metadata/_custom_type_script = "uid://cl3m27c5m26sw"

@@ -13,7 +13,7 @@ var DEX: int
 var DEF: int
 var LUC: int
 var LVL: int
-
+var experience: int
 
 func take_damage(amount: int) -> void:
 	current_hp = max(current_hp - amount, 0)

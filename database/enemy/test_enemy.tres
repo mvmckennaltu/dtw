@@ -6,6 +6,7 @@
 [sub_resource type="Resource" id="Resource_3db21"]
 script = ExtResource("2_3db21")
 max_HP = 8
+max_SP = 60
 DEX = 9
 DEF = 3
 metadata/_custom_type_script = "uid://d2v2k63tiahp7"
