@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://21w4c3qrna1b"]
 
 [ext_resource type="Script" uid="uid://cbd73n7v2uffy" path="res://src/dungeon/dungeonitem.gd" id="1_3gv3h"]
-[ext_resource type="Texture2D" uid="uid://hbx10ru6sxfb" path="res://addons/dialogic/Modules/Comment/icon.png" id="2_3gv3h"]
+[ext_resource type="Texture2D" uid="uid://blhs7m8cbtwp0" path="res://addons/juicee/icons/2dtag.svg" id="2_3gv3h"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qyhhb"]
 size = Vector3(0.5, 1, 0.5)
