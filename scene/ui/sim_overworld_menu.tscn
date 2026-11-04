@@ -14,6 +14,7 @@ grow_vertical = 2
 script = ExtResource("1_sm6go")
 
 [node name="MainOverworldMenu" type="PanelContainer" parent="." unique_id=899057197]
+visible = false
 layout_mode = 0
 offset_right = 203.0
 offset_bottom = 315.0
@@ -55,7 +56,6 @@ layout_mode = 2
 text = "Back"
 
 [node name="CraftingMenu" type="PanelContainer" parent="." unique_id=1486238702]
-visible = false
 custom_maximum_size = Vector2(200, 800)
 layout_mode = 0
 offset_right = 200.0
@@ -66,17 +66,63 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="CraftingMenu/VBoxContainer" unique_id=1418214521]
 layout_mode = 2
-text = "The shop is currently under construction. Come back later in development!"
+text = "Accelerator House"
 label_settings = SubResource("LabelSettings_sm6go")
 horizontal_alignment = 1
 autowrap_mode = 3
 
+[node name="Label2" type="Label" parent="CraftingMenu/VBoxContainer" unique_id=97647457]
+layout_mode = 2
+text = "Available Recipes"
+label_settings = SubResource("LabelSettings_sm6go")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="RecipeContainer" type="VBoxContainer" parent="CraftingMenu/VBoxContainer" unique_id=1696127887]
+layout_mode = 2
+alignment = 1
+
 [node name="BackButton" type="Button" parent="CraftingMenu/VBoxContainer" unique_id=1314430481]
 layout_mode = 2
 text = "Back"
+
+[node name="ConfirmContainer" type="PanelContainer" parent="." unique_id=264470266]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -276.0
+offset_right = -76.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ConfirmContainer" unique_id=629116638]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ConfirmContainer/VBoxContainer" unique_id=1572714305]
+layout_mode = 2
+text = "Crafting Requirements:"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ConfirmContainer/VBoxContainer" unique_id=829855061]
+visible = false
+layout_mode = 2
+alignment = 1
+
+[node name="ConfirmButton" type="Button" parent="ConfirmContainer/VBoxContainer/HBoxContainer" unique_id=935288868]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Yes"
+
+[node name="CancelButton" type="Button" parent="ConfirmContainer/VBoxContainer/HBoxContainer" unique_id=1544959758]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "No"
 
 [connection signal="pressed" from="MainOverworldMenu/VBoxContainer/EnterDungeonButton" to="." method="_on_enter_dungeon_button_pressed"]
 [connection signal="pressed" from="MainOverworldMenu/VBoxContainer/SancButton" to="." method="_on_sanc_button_pressed"]
 [connection signal="pressed" from="MainOverworldMenu/VBoxContainer/ShopButton" to="." method="_on_shop_button_pressed"]
 [connection signal="pressed" from="ShopMenu/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="CraftingMenu/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="ConfirmContainer/VBoxContainer/HBoxContainer/ConfirmButton" to="." method="_on_confirm_craft_button_pressed"]

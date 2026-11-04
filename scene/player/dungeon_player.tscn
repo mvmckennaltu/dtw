@@ -13,7 +13,7 @@ size = Vector3(0.5, 1, 0.5)
 script = ExtResource("5_w8c53")
 
 [node name="DungeonPlayer" type="CharacterBody3D" unique_id=1457069709]
-collision_mask = 15
+collision_mask = 31
 script = ExtResource("1_602fi")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1654678554]
@@ -51,7 +51,7 @@ align_rotation_with_view = Callable()
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1956374834]
-collision_mask = 15
+collision_mask = 31
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=169962144]
 shape = SubResource("BoxShape3D_sko5i")

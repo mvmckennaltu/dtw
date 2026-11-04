@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CraftingRecipe" format=3 uid="uid://cpr2l6ovbeuwq"]
+
+[ext_resource type="Script" uid="uid://h2mvba0m76fj" path="res://src/data/item.gd" id="1_ov7sj"]
+[ext_resource type="Script" uid="uid://cm4f3rxxfpwyc" path="res://src/data/saccel_crafting_recipe.gd" id="1_rba7x"]
+[ext_resource type="Resource" uid="uid://c4jpdnn6j2o18" path="res://database/saccel/test_saccel_for_crafting.tres" id="2_swjbi"]
+[ext_resource type="Resource" uid="uid://bya0gbw3mfqqk" path="res://database/item/orb.tres" id="2_ugccf"]
+
+[resource]
+script = ExtResource("1_rba7x")
+saccel_to_craft = ExtResource("2_swjbi")
+required_ingredients = Dictionary[ExtResource("1_ov7sj"), int]({
+ExtResource("2_ugccf"): 3
+})
+metadata/_custom_type_script = "uid://cm4f3rxxfpwyc"

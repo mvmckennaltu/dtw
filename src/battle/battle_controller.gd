@@ -106,6 +106,8 @@ func create_enemy_battler(enemy_data: EnemyData) -> Battler:
 	battler.DEF = enemy_data.stats.DEF
 	battler.LUC = enemy_data.stats.LUC
 	battler.LVL = enemy_data.stats.LVL
+	battler.is_enemy = true
+	battler.enemy_skills = enemy_data.skills
 	return battler
 
 
@@ -261,10 +263,21 @@ func set_all_actions_to_attack():
 
 func choose_enemy_actions() -> void:
 	for enemy in enemy_battlers:
-		if enemy.is_alive():
-			planned_actions[enemy] = ActionType.NORMAL_ATTACK
+		if not enemy.is_alive():
+			continue
 
+		print("Choosing action for: ", enemy.name)
+		print("Available skills: ", enemy.enemy_skills.size())
 
+		if enemy.enemy_skills.is_empty():
+			push_warning(enemy.name + " has no skills!")
+			continue
+
+		var selected_skill: Skill = enemy.enemy_skills.pick_random()
+
+		print("Selected skill: ", selected_skill.skill_name)
+
+		planned_actions[enemy] = selected_skill
 ## Round and action resolution
 
 func start_resolution_phase() -> void:
@@ -327,16 +340,21 @@ func end_round() -> void:
 	start_command_phase()
 
 func execute_action(battler: Battler, action: Variant) -> void:
+	print(
+		battler.name,
+		" is executing: ",
+		action.skill_name if action is Skill else str(action)
+	)
 	if action is Skill:
 		await execute_skill(battler, action)
 		return
 
 	# Keep the existing basic enemy attack as a fallback.
-	match action:
-		ActionType.NORMAL_ATTACK:
-			await execute_attack(battler, 1.0)
-		ActionType.STRONG_ATTACK:
-			await execute_attack(battler, 2.0)
+	#match action:
+		#ActionType.NORMAL_ATTACK:
+			#await execute_attack(battler, 1.0)
+		#ActionType.STRONG_ATTACK:
+			#await execute_attack(battler, 2.0)
 
 func execute_attack(
 	attacker: Battler,
@@ -383,7 +401,7 @@ func execute_skill(attacker: Battler, skill: Skill) -> void:
 			attacker.name + " doesn't have enough SP!"
 		)
 		return
-
+		
 	attacker.current_sp -= skill.sp_cost
 	battler_sp_changed.emit(attacker)
 

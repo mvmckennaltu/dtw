@@ -7,14 +7,14 @@ var current_hp: int
 var name: String
 var max_sp: int
 var current_sp: int
-
+var is_enemy = false
 var STR: int
 var DEX: int
 var DEF: int
 var LUC: int
 var LVL: int
 var experience: int
-
+var enemy_skills : Array[Skill]
 func take_damage(amount: int) -> void:
 	current_hp = max(current_hp - amount, 0)
 

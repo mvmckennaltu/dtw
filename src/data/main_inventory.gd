@@ -52,3 +52,11 @@ func remove_equippable_item_from_inventory(item: Equipment, number_to_remove: in
 			equipment_inventory.erase(item)
 	else:
 		return
+func get_item_count(item: Item) -> int:
+	if item is Consumable:
+		return consumable_inventory.get(item, 0)
+
+	elif item is Equipment:
+		return equipment_inventory.get(item, 0)
+
+	return 0

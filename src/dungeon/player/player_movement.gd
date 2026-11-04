@@ -61,9 +61,13 @@ func _on_area_3d_area_entered(area: Area3D) -> void:
 		print("oh shit an enemy")
 		start_encounter(source)
 	elif area.collision_layer == 4: #Checks for the item collision layer
-		print("yoooo an item")
+		print("yoooo an item maybe")
 		if source is DungeonItem:
 			source.add_to_inv() 
+	elif area.collision_layer == 16:
+		await Fade.fade_out(1, Color(1,1,1,1)).finished
+		get_tree().change_scene_to_file("uid://c06wft8v4hfd7")
+		Fade.fade_in(1,Color(1,1,1,1))
 	
 	
 func start_encounter(Node3D):

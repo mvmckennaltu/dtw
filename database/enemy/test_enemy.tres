@@ -2,6 +2,10 @@
 
 [ext_resource type="Script" uid="uid://bj18lqeosw4vg" path="res://src/data/enemy_data.gd" id="1_jj4tk"]
 [ext_resource type="Script" uid="uid://d2v2k63tiahp7" path="res://src/data/stats.gd" id="2_3db21"]
+[ext_resource type="Script" uid="uid://cinimpi1dlebe" path="res://src/data/skill.gd" id="2_c2613"]
+[ext_resource type="Resource" uid="uid://brvnyh0c8xafo" path="res://database/skill/test_skill4.tres" id="3_2o2gf"]
+[ext_resource type="Resource" uid="uid://bony2x6mtfb5k" path="res://database/skill/test_skill1.tres" id="4_r6yn8"]
+[ext_resource type="Resource" uid="uid://bchcxvqn8fmqj" path="res://database/skill/test_skill2.tres" id="5_rvly0"]
 
 [sub_resource type="Resource" id="Resource_3db21"]
 script = ExtResource("2_3db21")
@@ -15,6 +19,7 @@ metadata/_custom_type_script = "uid://d2v2k63tiahp7"
 script = ExtResource("1_jj4tk")
 enemy_name = "Test"
 stats = SubResource("Resource_3db21")
+skills = Array[ExtResource("2_c2613")]([ExtResource("3_2o2gf"), ExtResource("4_r6yn8"), ExtResource("5_rvly0")])
 xp_drop = 5
 sharp_affinity = 2
 metadata/_custom_type_script = "uid://bj18lqeosw4vg"

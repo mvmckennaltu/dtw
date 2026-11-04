@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="SAccel" format=3 uid="uid://c4jpdnn6j2o18"]
+
+[ext_resource type="Script" uid="uid://dvsb2w3h0up14" path="res://src/data/saccel.gd" id="1_a1ga1"]
+[ext_resource type="Script" uid="uid://cinimpi1dlebe" path="res://src/data/skill.gd" id="2_yjifx"]
+[ext_resource type="Resource" uid="uid://bony2x6mtfb5k" path="res://database/skill/test_skill1.tres" id="3_uialk"]
+[ext_resource type="Resource" uid="uid://bchcxvqn8fmqj" path="res://database/skill/test_skill2.tres" id="4_ey1n4"]
+
+[resource]
+script = ExtResource("1_a1ga1")
+saccel_name = "Craftera"
+skills = Array[ExtResource("2_yjifx")]([ExtResource("3_uialk"), ExtResource("4_ey1n4")])
+STR_modifier = -2
+DEX_modifier = 5
+DEF_modifier = -2
+fire_affinity = 3
+wind_affinity = 2
+metadata/_custom_type_script = "uid://dvsb2w3h0up14"

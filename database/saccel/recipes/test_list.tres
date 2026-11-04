@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CraftingList" format=3 uid="uid://dff7pax6utva0"]
+
+[ext_resource type="Script" uid="uid://cm4f3rxxfpwyc" path="res://src/data/saccel_crafting_recipe.gd" id="1_qhoci"]
+[ext_resource type="Resource" uid="uid://cpr2l6ovbeuwq" path="res://database/saccel/recipes/test_craft.tres" id="2_fq5kp"]
+[ext_resource type="Script" uid="uid://g68lc3jl0r0v" path="res://src/data/crafting_list.gd" id="2_kx1ox"]
+
+[resource]
+script = ExtResource("2_kx1ox")
+full_list = Dictionary[ExtResource("1_qhoci"), bool]({
+ExtResource("2_fq5kp"): true
+})
+metadata/_custom_type_script = "uid://g68lc3jl0r0v"

@@ -13,6 +13,8 @@ script = ExtResource("5_uhif6")
 item_name = "Dingus"
 metadata/_custom_type_script = "uid://vjc0thqqfq4i"
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_sko5i"]
+
 [node name="TestDungeon" type="Node3D" unique_id=557933789]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1451891213]
@@ -68,3 +70,15 @@ remember_last_menu_option = true
 [node name="DungeonItem" parent="." unique_id=749007445 instance=ExtResource("4_ncluu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5840225, 0.4340002, -1.881052)
 item = SubResource("Resource_uhif6")
+
+[node name="Label3D" type="Label3D" parent="." unique_id=1227274520]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.99799275, 0.93889785, 5.427377)
+billboard = 1
+text = "Exit"
+
+[node name="Area3D" type="Area3D" parent="Label3D" unique_id=1620060667]
+collision_layer = 16
+collision_mask = 31
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Label3D/Area3D" unique_id=538634806]
+shape = SubResource("BoxShape3D_sko5i")
