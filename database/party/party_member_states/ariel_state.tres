@@ -38,5 +38,4 @@ accessory = SubResource("Resource_ff64c")
 gun = SubResource("Resource_csoam")
 soul_accelerators = Array[ExtResource("2_ikcv2")]([ExtResource("2_mtovo"), ExtResource("5_ljad3")])
 equipped_saccel = ExtResource("2_mtovo")
-equipment = null
 metadata/_custom_type_script = "uid://bu7gc3pabhpkv"

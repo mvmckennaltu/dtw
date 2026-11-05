@@ -16,7 +16,9 @@ extends Resource
 @export var gun : Equipment
 @export var soul_accelerators: Array[SAccel] = []
 @export var equipped_saccel: SAccel
+@export var default_saccel: SAccel
 @export var equipment : Array[Equipment]
+const soul_acc_cap = 4
 func _ready():
 	if soul_accelerators != null:
 		for saccel in soul_accelerators:
