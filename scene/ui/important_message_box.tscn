@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://es8cdhf7btxh"]
+
+[node name="important_message_box" type="Control" unique_id=977472489]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MessageBox" type="PanelContainer" parent="." unique_id=1315254287]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -280.0
+offset_top = -160.0
+offset_right = 320.0
+offset_bottom = 140.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MessageBox" unique_id=1668935995]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MessageBox/VBoxContainer" unique_id=973817448]
+layout_mode = 2
+text = "Test Text"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MessageBox/VBoxContainer" unique_id=1050310824]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MessageBox/VBoxContainer" unique_id=1796213753]
+layout_mode = 2
+text = "OK"

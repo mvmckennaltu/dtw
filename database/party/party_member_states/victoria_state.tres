@@ -4,9 +4,11 @@
 [ext_resource type="Script" uid="uid://bu7gc3pabhpkv" path="res://src/data/character_state.gd" id="1_oabf2"]
 [ext_resource type="Script" uid="uid://dvsb2w3h0up14" path="res://src/data/saccel.gd" id="2_bv7bh"]
 [ext_resource type="Resource" uid="uid://dpl0n5phgwuam" path="res://database/saccel/test_saccel.tres" id="2_dpi6k"]
+[ext_resource type="Script" uid="uid://cen0l5ytwt6r0" path="res://src/data/equipment.gd" id="2_jcgjo"]
 
 [resource]
 script = ExtResource("1_oabf2")
 definition = ExtResource("1_bv7bh")
+soul_accelerators = Array[ExtResource("2_bv7bh")]([ExtResource("2_dpi6k")])
 equipped_saccel = ExtResource("2_dpi6k")
 metadata/_custom_type_script = "uid://bu7gc3pabhpkv"

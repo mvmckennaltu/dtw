@@ -61,7 +61,7 @@ func open_confirm_menu(recipe: CraftingRecipe) -> void:
 	for child in container.get_children():
 		if child.has_meta("is_req"):
 			child.queue_free()
-
+	var insert_index := 0
 	# Display the ingredients and required quantities.
 	for item in recipe.required_ingredients:
 		var amount: int = recipe.required_ingredients[item]
@@ -69,16 +69,21 @@ func open_confirm_menu(recipe: CraftingRecipe) -> void:
 		var label := Label.new()
 		label.set_meta("is_req", true)
 		label.text = item.item_name + " " + str(amount) + "x"
-
+		container.move_child(label,insert_index)
 		container.add_child(label)
-
+		insert_index + 1
+	$ConfirmContainer/VBoxContainer/HBoxContainer.move_to_front()
+	$ConfirmContainer/VBoxContainer.move_child($ConfirmContainer/VBoxContainer/Label2, $ConfirmContainer/VBoxContainer.get_child_count()-2)
 	# Check whether the player can afford the recipe.
 	var can_craft := has_required_ingredients(recipe)
 	if can_craft:
 		print("yay, you can craft!")
+		$ConfirmContainer/VBoxContainer/Label2.text = "Craft?"
 	else:
 		print("rip")
+		$ConfirmContainer/VBoxContainer/Label2.text = "You can't craft this."
 	$ConfirmContainer/VBoxContainer/HBoxContainer.visible = can_craft
+	
 	$ConfirmContainer.show()
 func _on_shop_button_pressed() -> void:
 	open_shop_menu()
@@ -119,7 +124,7 @@ func craft_saccel(recipe: CraftingRecipe) -> void:
 		inventory.remove_item_from_inventory(item, amount)
 
 	print("Successfully crafted: ", recipe.saccel_to_craft.saccel_name)
-
+	
 	PersistentParty.party.members[0].soul_accelerators.append(recipe.saccel_to_craft)
 	$ConfirmContainer.hide()
 	refresh_crafting_menu()

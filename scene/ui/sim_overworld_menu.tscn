@@ -105,6 +105,11 @@ layout_mode = 2
 text = "Crafting Requirements:"
 horizontal_alignment = 1
 
+[node name="Label2" type="Label" parent="ConfirmContainer/VBoxContainer" unique_id=322824444]
+layout_mode = 2
+text = "You can't craft this."
+horizontal_alignment = 1
+
 [node name="HBoxContainer" type="HBoxContainer" parent="ConfirmContainer/VBoxContainer" unique_id=829855061]
 visible = false
 layout_mode = 2
