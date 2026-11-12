@@ -42,6 +42,7 @@ func _ready() -> void:
 	if battle_menu != null:
 		battle_menu.battle_start.connect(start_battle_button_pressed)
 		battle_menu.all_attack.connect(set_all_actions_to_attack)
+		battle_menu.flee.connect(flee)
 	else:
 		print("Could not get battle menu!")
 
@@ -601,3 +602,9 @@ func _on_skill_selected(skill: Skill) -> void:
 		return
 
 	queue_action(battler, skill)
+
+func flee():
+	update_message_text.emit("Attempting to flee...")
+	await get_tree().create_timer(1.0).timeout
+	update_message_text.emit("You escaped!...")
+	exit_to_dungeon()

@@ -42,6 +42,10 @@ text = "Strategy"
 layout_mode = 2
 text = "Start Battle"
 
+[node name="FleeButton" type="Button" parent="MainActionSelect/VBoxContainer" unique_id=1801187733]
+layout_mode = 2
+text = "Flee"
+
 [node name="StrategyMenu" type="PanelContainer" parent="." unique_id=218697192]
 visible = false
 layout_mode = 0
@@ -127,6 +131,7 @@ script = ExtResource("4_cx5gg")
 
 [connection signal="pressed" from="MainActionSelect/VBoxContainer/StratButton" to="." method="_on_strat_button_pressed"]
 [connection signal="pressed" from="MainActionSelect/VBoxContainer/StartBattleButton" to="." method="_on_start_battle_button_pressed"]
+[connection signal="pressed" from="MainActionSelect/VBoxContainer/FleeButton" to="." method="_on_flee_button_pressed"]
 [connection signal="pressed" from="StrategyMenu/VBoxContainer/AllAttackButton" to="." method="_on_all_attack_button_pressed"]
 [connection signal="pressed" from="StrategyMenu/VBoxContainer/SwapOrderButton" to="." method="_on_swap_order_button_pressed"]
 [connection signal="pressed" from="StrategyMenu/VBoxContainer/BackButton" to="." method="_on_strategy_back_button_pressed"]

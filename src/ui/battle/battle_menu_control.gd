@@ -25,6 +25,7 @@ class_name BattleMenuController
 var selected_command_battler: Battler = null
 signal battle_start
 signal all_attack
+signal flee
 func _ready() -> void:
 	main_action_select.show()
 	strategy_menu.hide()
@@ -147,7 +148,8 @@ func _on_strat_button_pressed() -> void:
 func _on_start_battle_button_pressed() -> void:
 	battle_start.emit()
 
-
+func _on_flee_button_pressed() -> void:
+	flee.emit()
 
 func _on_strategy_back_button_pressed() -> void:
 	return_to_main_menu()
