@@ -9,6 +9,8 @@
 [resource]
 script = ExtResource("1_oabf2")
 definition = ExtResource("1_bv7bh")
+current_hp = 40
+current_sp = 35
 soul_accelerators = Array[ExtResource("2_bv7bh")]([ExtResource("2_dpi6k")])
 equipped_saccel = ExtResource("2_dpi6k")
 metadata/_custom_type_script = "uid://bu7gc3pabhpkv"

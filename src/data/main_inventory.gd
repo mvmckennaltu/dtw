@@ -1,7 +1,7 @@
 extends Resource
 class_name MainInventory
-@export var consumable_inventory : Dictionary = {}
-@export var equipment_inventory : Dictionary = {}
+@export var consumable_inventory : Dictionary[Consumable,int] = {}
+@export var equipment_inventory : Dictionary[Equipment,int] = {}
 signal item_slot_full
 
 func add_item_to_inventory(item: Item, amount: int):

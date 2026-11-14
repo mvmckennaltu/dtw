@@ -6,7 +6,8 @@ enum SkillType {
 	MAGICATTACK,
 	HEALING,
 	BUFF,
-	SPECIAL
+	SPECIAL,
+	DEFEND
 }
 
 @export var skill_name: String = ""

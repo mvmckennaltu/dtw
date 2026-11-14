@@ -59,6 +59,10 @@ layout_mode = 2
 layout_mode = 2
 text = "All Attack"
 
+[node name="AllDefendButton" type="Button" parent="StrategyMenu/VBoxContainer" unique_id=1111392967]
+layout_mode = 2
+text = "All Defend"
+
 [node name="SwapOrderButton" type="Button" parent="StrategyMenu/VBoxContainer" unique_id=1532538696]
 layout_mode = 2
 text = "Swap Order"
@@ -77,6 +81,45 @@ offset_bottom = 136.0
 layout_mode = 2
 
 [node name="BackButton" type="Button" parent="SkillMenu/VBoxContainer" unique_id=1134741688]
+layout_mode = 2
+text = "Back"
+
+[node name="ItemsMenu" type="PanelContainer" parent="." unique_id=1741482189]
+visible = false
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 136.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ItemsMenu" unique_id=1564908157]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="ItemsMenu/VBoxContainer" unique_id=777797471]
+layout_mode = 2
+text = "Back"
+
+[node name="OptionsMenu" type="PanelContainer" parent="." unique_id=148837465]
+visible = false
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 150.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionsMenu" unique_id=1554969278]
+layout_mode = 2
+
+[node name="SkillsButton" type="Button" parent="OptionsMenu/VBoxContainer" unique_id=1673698812]
+layout_mode = 2
+text = "Skills"
+
+[node name="ItemsButton" type="Button" parent="OptionsMenu/VBoxContainer" unique_id=390658762]
+layout_mode = 2
+text = "Items"
+
+[node name="DefendButton" type="Button" parent="OptionsMenu/VBoxContainer" unique_id=147336029]
+layout_mode = 2
+text = "Defend
+"
+
+[node name="BackButton" type="Button" parent="OptionsMenu/VBoxContainer" unique_id=1513163389]
 layout_mode = 2
 text = "Back"
 
@@ -133,7 +176,12 @@ script = ExtResource("4_cx5gg")
 [connection signal="pressed" from="MainActionSelect/VBoxContainer/StartBattleButton" to="." method="_on_start_battle_button_pressed"]
 [connection signal="pressed" from="MainActionSelect/VBoxContainer/FleeButton" to="." method="_on_flee_button_pressed"]
 [connection signal="pressed" from="StrategyMenu/VBoxContainer/AllAttackButton" to="." method="_on_all_attack_button_pressed"]
+[connection signal="pressed" from="StrategyMenu/VBoxContainer/AllDefendButton" to="." method="_on_all_defend_button_pressed"]
 [connection signal="pressed" from="StrategyMenu/VBoxContainer/SwapOrderButton" to="." method="_on_swap_order_button_pressed"]
 [connection signal="pressed" from="StrategyMenu/VBoxContainer/BackButton" to="." method="_on_strategy_back_button_pressed"]
 [connection signal="pressed" from="SkillMenu/VBoxContainer/BackButton" to="." method="_on_skill_back_button_pressed"]
+[connection signal="pressed" from="OptionsMenu/VBoxContainer/SkillsButton" to="." method="_on_skills_button_pressed"]
+[connection signal="pressed" from="OptionsMenu/VBoxContainer/ItemsButton" to="." method="_on_items_menu_button_pressed"]
+[connection signal="pressed" from="OptionsMenu/VBoxContainer/DefendButton" to="." method="_on_defend_button_pressed"]
+[connection signal="pressed" from="OptionsMenu/VBoxContainer/BackButton" to="." method="_on_options_back_button_pressed"]
 [connection signal="pressed" from="OrderMenu/VBoxContainer/BackButton" to="." method="_on_order_back_button_pressed"]

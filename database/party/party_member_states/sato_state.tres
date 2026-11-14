@@ -2,12 +2,15 @@
 
 [ext_resource type="Script" uid="uid://bu7gc3pabhpkv" path="res://src/data/character_state.gd" id="1_7f751"]
 [ext_resource type="Resource" uid="uid://b1qq0go72fkxm" path="res://database/party/sato.tres" id="1_afghe"]
+[ext_resource type="Script" uid="uid://cen0l5ytwt6r0" path="res://src/data/equipment.gd" id="2_6i815"]
 [ext_resource type="Script" uid="uid://dvsb2w3h0up14" path="res://src/data/saccel.gd" id="2_afghe"]
 [ext_resource type="Resource" uid="uid://dv6650xw5qwxh" path="res://database/saccel/test_saccel2.tres" id="2_srkei"]
 
 [resource]
 script = ExtResource("1_7f751")
 definition = ExtResource("1_afghe")
+current_hp = 35
+current_sp = 35
 soul_accelerators = Array[ExtResource("2_afghe")]([ExtResource("2_srkei")])
 equipped_saccel = ExtResource("2_srkei")
 metadata/_custom_type_script = "uid://bu7gc3pabhpkv"

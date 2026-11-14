@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Consumable" format=3 uid="uid://bpm6vm28e1trb"]
+
+[ext_resource type="Resource" uid="uid://cj55mw01jqy0v" path="res://database/item/effects/healing.tres" id="1_n8s57"]
+[ext_resource type="Script" uid="uid://vjc0thqqfq4i" path="res://src/data/consumable.gd" id="1_on34m"]
+
+[resource]
+script = ExtResource("1_on34m")
+is_usable_on_field = true
+item_name = "Potion"
+item_effect = ExtResource("1_n8s57")
+metadata/_custom_type_script = "uid://vjc0thqqfq4i"

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Skill" format=3 uid="uid://bsxvkx785yfur"]
+
+[ext_resource type="Script" uid="uid://cinimpi1dlebe" path="res://src/data/skill.gd" id="1_pq2jh"]
+
+[resource]
+script = ExtResource("1_pq2jh")
+skill_name = "Defend"
+skill_type = 5
+metadata/_custom_type_script = "uid://cinimpi1dlebe"

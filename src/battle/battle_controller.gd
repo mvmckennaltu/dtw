@@ -42,7 +42,9 @@ func _ready() -> void:
 	if battle_menu != null:
 		battle_menu.battle_start.connect(start_battle_button_pressed)
 		battle_menu.all_attack.connect(set_all_actions_to_attack)
+		battle_menu.all_defend.connect(set_all_actions_to_defend)
 		battle_menu.flee.connect(flee)
+		battle_menu.defending.connect(set_defending)
 	else:
 		print("Could not get battle menu!")
 
@@ -79,9 +81,9 @@ func create_party_battler(state: CharacterState) -> Battler:
 	var battler := Battler.new()
 	battler.name = state.definition.character_name
 	battler.max_hp = state.get_max_hp()
-	battler.current_hp = battler.max_hp
+	battler.current_hp = state.current_hp
 	battler.max_sp = state.get_max_sp()
-	battler.current_sp = state.get_max_sp()
+	battler.current_sp = state.current_sp
 	battler.STR = state.get_effective_str()
 	battler.DEX = state.get_effective_dex()
 	battler.DEF = state.get_effective_def()
@@ -102,6 +104,8 @@ func create_enemy_battler(enemy_data: EnemyData) -> Battler:
 	battler.name = enemy_data.enemy_name
 	battler.max_hp = enemy_data.stats.max_HP
 	battler.current_hp = battler.max_hp
+	battler.max_sp = enemy_data.stats.max_SP
+	battler.current_sp = enemy_data.stats.max_SP
 	battler.STR = enemy_data.stats.STR
 	battler.DEX = enemy_data.stats.DEX
 	battler.DEF = enemy_data.stats.DEF
@@ -234,14 +238,22 @@ func queue_action(battler: Battler, action: Variant) -> void:
 		return
 
 	# Player-selected actions must be Skill resources.
-	if not (action is Skill):
-		push_warning("Party actions must be Skill resources.")
+	if not (action is Skill or action is Item):
+		push_warning("Party actions must be Skill or Item resources.")
 		return
 
 	planned_actions[battler] = action
 
-	print(battler.name, " queued skill: ", action.skill_name)
+	var action_name: String
 
+	if action is Skill:
+			action_name = action.skill_name
+	elif action is Item:
+			action_name = action.item_name
+
+	print(battler.name, " queued action: ", action_name)
+func set_defending():
+	pass
 func all_party_actions_selected() -> bool:
 	for battler in party_battlers:
 		if battler.is_alive() and not planned_actions.has(battler):
@@ -261,7 +273,10 @@ func set_all_actions_to_attack():
 	var melee_skill : Skill = preload("res://database/skill/test_melee.tres")
 	for battler in party_battlers:
 		queue_action(battler, melee_skill)
-
+func set_all_actions_to_defend():
+	var defend_skill : Skill = preload("uid://bsxvkx785yfur")
+	for battler in party_battlers:
+		queue_action(battler, defend_skill)
 func choose_enemy_actions() -> void:
 	for enemy in enemy_battlers:
 		if not enemy.is_alive():
@@ -337,7 +352,9 @@ func end_round() -> void:
 	# For now, simply calculate a new initiative order.
 	calculate_initiative()
 	turn_order_created.emit(turn_order)
-
+	for party_member in party_battlers:
+		if party_member.defending == true:
+			party_member.stop_defend(battler_character_states[party_member].get_effective_def())
 	start_command_phase()
 
 func execute_action(battler: Battler, action: Variant) -> void:
@@ -349,13 +366,9 @@ func execute_action(battler: Battler, action: Variant) -> void:
 	if action is Skill:
 		await execute_skill(battler, action)
 		return
-
-	# Keep the existing basic enemy attack as a fallback.
-	#match action:
-		#ActionType.NORMAL_ATTACK:
-			#await execute_attack(battler, 1.0)
-		#ActionType.STRONG_ATTACK:
-			#await execute_attack(battler, 2.0)
+	if action is Item:
+		await execute_item(battler, action, battler)
+		return
 
 func execute_attack(
 	attacker: Battler,
@@ -425,6 +438,8 @@ func execute_skill(attacker: Battler, skill: Skill) -> void:
 			update_message_text.emit(
 				skill.skill_name + " isn't implemented yet."
 			)
+		Skill.SkillType.DEFEND:
+			await execute_defend(attacker)
 
 func execute_skill_damage(
 	attacker: Battler,
@@ -500,7 +515,12 @@ func execute_skill_healing(
 
 	await get_tree().create_timer(0.5).timeout
 
-
+func execute_defend(battler: Battler):
+	var new_defense = battler_character_states[battler].get_effective_def() * 2
+	battler.defending = true
+	battler.defend(new_defense)
+	update_message_text.emit (battler.name + " is defending!")
+	await get_tree().create_timer(0.5).timeout
 ## Combat helpers
 
 func get_first_alive_enemy() -> Battler:
@@ -550,7 +570,44 @@ func get_target_affinity(
 
 	return SAccel.Affinity.NORMAL
 
+func execute_item(
+	user: Battler,
+	item: Item,
+	target: Battler
+) -> void:
 
+	if item == null:
+		return
+
+	var context := ItemUseContext.new()
+
+	context.mode = ItemUseContext.UseMode.BATTLE
+	context.user_battler = user
+	context.target_battler = target
+
+	context.user_state = battler_character_states.get(user)
+	context.target_state = battler_character_states.get(target)
+
+	var successful := item.item_use(context)
+
+	if not successful:
+		update_message_text.emit("That item had no effect!")
+		return
+
+	# Consume the item only after a successful effect.
+	PersistentInventory.main_inventory.remove_item_from_inventory(
+		item,
+		1
+	)
+
+	battler_hp_changed.emit(target)
+	battler_sp_changed.emit(target)
+
+	update_message_text.emit(
+		user.name + " used " + item.item_name + "!"
+	)
+
+	await get_tree().create_timer(0.5).timeout
 ## Battle ending and scene transitions
 
 func end_battle(player_won: bool) -> void:
@@ -566,10 +623,14 @@ func end_battle(player_won: bool) -> void:
 		await get_tree().create_timer(0.5).timeout
 		obtain_item_drops()
 		await get_tree().create_timer(0.5).timeout
+		for battler in party_battlers:
+			sync_battler_to_character_state(battler)
 		exit_to_dungeon()
 	else:
 		battle_state = BattleState.DEFEAT
 		print("Defeat...")
+		for battler in party_battlers:
+			sync_battler_to_character_state(battler)
 		update_message_text.emit("You lost...")
 		await get_tree().create_timer(0.5).timeout
 		exit_to_dungeon()
@@ -607,4 +668,12 @@ func flee():
 	update_message_text.emit("Attempting to flee...")
 	await get_tree().create_timer(1.0).timeout
 	update_message_text.emit("You escaped!...")
-	exit_to_dungeon()
+	end_battle(false)
+func sync_battler_to_character_state(battler: Battler) -> void:
+	var state: CharacterState = battler_character_states.get(battler)
+
+	if state == null:
+		return
+
+	state.current_hp = battler.current_hp
+	state.current_sp = battler.current_sp

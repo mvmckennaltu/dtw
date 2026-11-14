@@ -1,5 +1,6 @@
-extends Item
+extends Resource
 class_name ItemEffect
 
-func run_effect():
-	pass
+func apply(context: ItemUseContext) -> bool:
+	push_warning("ItemEffect.apply() was not implemented!")
+	return false

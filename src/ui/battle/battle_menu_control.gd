@@ -4,6 +4,8 @@ class_name BattleMenuController
 @onready var strategy_menu = $StrategyMenu
 @onready var skill_menu = $SkillMenu
 @onready var order_menu = $OrderMenu
+@onready var options_menu = $OptionsMenu
+@onready var items_menu = $ItemsMenu
 @onready var battle_controller = $"../../BattleController"
 @onready var start_button = $MainActionSelect/VBoxContainer/StartBattleButton
 @onready var strategy_container: VBoxContainer = $StrategyMenu/VBoxContainer
@@ -11,6 +13,11 @@ class_name BattleMenuController
 @onready var skill_container: VBoxContainer = $SkillMenu/VBoxContainer
 @onready var skill_back_button: Button = \
 	$SkillMenu/VBoxContainer/BackButton
+@onready var options_skill_button : Button = $OptionsMenu/VBoxContainer/SkillsButton
+@onready var options_items_button : Button = $OptionsMenu/VBoxContainer/ItemsButton
+@onready var options_defend_button : Button = $OptionsMenu/VBoxContainer/DefendButton
+@onready var options_back_button : Button = $OptionsMenu/VBoxContainer/BackButton
+@onready var items_container = $ItemsMenu/VBoxContainer
 @onready var initiative_panel_controller = \
 	$InitiativePanel
 
@@ -26,6 +33,8 @@ var selected_command_battler: Battler = null
 signal battle_start
 signal all_attack
 signal flee
+signal defending
+signal all_defend
 func _ready() -> void:
 	main_action_select.show()
 	strategy_menu.hide()
@@ -47,12 +56,17 @@ func open_skill_menu(battler: Battler) -> void:
 	selected_command_battler = battler
 
 	refresh_skill_menu()
-
+	options_menu.hide()
 	strategy_menu.hide()
 	skill_menu.show()
 	$SkillMenu/VBoxContainer/BackButton.grab_focus()
 
 
+func open_option_menu(battler: Battler):
+	selected_command_battler = battler
+	strategy_menu.hide()
+	options_menu.show()
+	options_skill_button.grab_focus()
 func open_order_menu() -> void:
 	strategy_menu.hide()
 	order_menu.show()
@@ -65,9 +79,10 @@ func open_order_menu() -> void:
 
 func return_to_strategy() -> void:
 	initiative_panel_controller.set_editing_enabled(false)
-
+	items_menu.hide()
 	order_menu.hide()
 	skill_menu.hide()
+	options_menu.hide()
 	strategy_menu.show()
 
 	refresh_strategy_menu()
@@ -109,7 +124,7 @@ func refresh_strategy_menu() -> void:
 			button.text += " — Not selected"
 
 		button.pressed.connect(
-			open_skill_menu.bind(battler)
+			open_option_menu.bind(battler)
 		)
 
 		strategy_container.add_child(button)
@@ -120,14 +135,10 @@ func action_name(action: Variant) -> String:
 	if action is Skill:
 		return action.skill_name
 
-	# Legacy system: handle old ActionType enum values.
-	match action:
-		BattleController.ActionType.NORMAL_ATTACK:
-			return "Attack"
-		BattleController.ActionType.STRONG_ATTACK:
-			return "Strong Attack"
-		_:
-			return "Unknown action"
+	if action is Item:
+		return action.item_name
+	else:
+		return "Unknown action"
 func _on_attack_button_pressed() -> void:
 	if selected_command_battler == null:
 		return
@@ -163,7 +174,7 @@ func _on_swap_order_button_pressed() -> void:
 
 
 func _on_skill_back_button_pressed() -> void:
-	return_to_strategy()
+	open_option_menu(selected_command_battler)
 
 
 
@@ -187,6 +198,9 @@ func _on_strong_attack_button_pressed() -> void:
 func _on_all_attack_button_pressed() -> void:
 	all_attack.emit()
 	refresh_strategy_menu()
+func _on_all_defend_button_pressed() -> void:
+	all_defend.emit()
+	refresh_strategy_menu()
 func create_skill_button(skill: Skill) -> Button:
 	var button := Button.new()
 	button.text = skill.skill_name
@@ -197,7 +211,28 @@ func create_skill_button(skill: Skill) -> Button:
 	)
 
 	return button
+func refresh_items_menu() -> void:
+	for child in items_container.get_children():
+		if child.has_meta("generated_item_button"):
+			child.queue_free()
 
+	var inventory = PersistentInventory.main_inventory
+
+	for item in inventory.consumable_inventory:
+		var amount: int = inventory.consumable_inventory[item]
+
+		if amount <= 0:
+			continue
+
+		var button := Button.new()
+		button.set_meta("generated_item_button", true)
+		button.text = item.item_name + " x" + str(amount)
+
+		button.pressed.connect(
+			_on_item_button_pressed.bind(item)
+		)
+
+		items_container.add_child(button)
 func refresh_skill_menu() -> void:
 	# Remove previously generated skill buttons.
 	for child in skill_container.get_children():
@@ -239,3 +274,49 @@ func _on_skill_button_pressed(skill: Skill) -> void:
 
 	return_to_strategy()
 	refresh_strategy_menu()
+
+func defend(battler: Battler):
+	if selected_command_battler == null:
+		return
+	var defend_action : Skill = preload("uid://bsxvkx785yfur")
+	battle_controller.queue_action(
+		selected_command_battler,
+		defend_action
+	)
+	defending.emit()
+	return_to_strategy()
+	refresh_strategy_menu()
+func _on_options_back_button_pressed() -> void:
+	return_to_strategy()
+
+
+func _on_skills_button_pressed() -> void:
+	open_skill_menu(selected_command_battler)
+
+
+func _on_defend_button_pressed() -> void:
+	defend(selected_command_battler)
+
+
+
+
+func _on_item_button_pressed(item: Item) -> void:
+	if selected_command_battler == null:
+		return
+
+	battle_controller.queue_action(
+		selected_command_battler,
+		item
+	)
+	
+	return_to_strategy()
+	refresh_strategy_menu()
+
+
+func _on_items_menu_button_pressed() -> void:
+	open_items_menu()
+
+func open_items_menu():
+	options_menu.hide()
+	items_menu.show()
+	refresh_items_menu()

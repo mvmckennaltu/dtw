@@ -32,6 +32,8 @@ metadata/_custom_type_script = "uid://b6ea0wpdc3tt0"
 [resource]
 script = ExtResource("1_2dkdt")
 definition = ExtResource("1_ikcv2")
+current_hp = 40
+current_sp = 35
 armor = SubResource("Resource_5rm31")
 weapon = SubResource("Resource_n6s1u")
 accessory = SubResource("Resource_ff64c")

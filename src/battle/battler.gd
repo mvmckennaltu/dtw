@@ -15,6 +15,7 @@ var LUC: int
 var LVL: int
 var experience: int
 var enemy_skills : Array[Skill]
+var defending : bool = false
 func take_damage(amount: int) -> void:
 	current_hp = max(current_hp - amount, 0)
 
@@ -35,3 +36,7 @@ func setup(stats: Stats) -> void:
 	DEF = stats.DEF
 	LUC = stats.LUC
 	LVL = stats.LVL
+func defend(new_def: int):
+	DEF = new_def
+func stop_defend(effective_def: int):
+	DEF = effective_def

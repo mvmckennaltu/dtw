@@ -6,25 +6,21 @@
 [ext_resource type="PackedScene" uid="uid://21w4c3qrna1b" path="res://scene/enemy/dungeon_test_item.tscn" id="4_ncluu"]
 [ext_resource type="Script" uid="uid://vjc0thqqfq4i" path="res://src/data/consumable.gd" id="5_uhif6"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ffy62"]
-
 [sub_resource type="Resource" id="Resource_uhif6"]
 script = ExtResource("5_uhif6")
+is_usable_on_field = null
 item_name = "Dingus"
 metadata/_custom_type_script = "uid://vjc0thqqfq4i"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sko5i"]
 
-[node name="TestDungeon" type="Node3D" unique_id=557933789]
+[sub_resource type="NavigationMesh" id="NavigationMesh_ihg6t"]
+vertices = PackedVector3Array(-7.7006226, 0.45, -9.5, -7.7006226, 0.45, 9.5, 11.299377, 0.45, 9.5, 11.299377, 0.45, -9.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1451891213]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7993774, 0, 0)
-gi_mode = 2
-use_collision = true
-collision_layer = 8
-collision_mask = 15
-size = Vector3(20, 0.1, 20)
-material = SubResource("StandardMaterial3D_ffy62")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ffy62"]
+
+[node name="TestDungeon" type="Node3D" unique_id=557933789]
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=64492183]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 0)
@@ -82,3 +78,15 @@ collision_mask = 31
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Label3D/Area3D" unique_id=538634806]
 shape = SubResource("BoxShape3D_sko5i")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1745409010]
+navigation_mesh = SubResource("NavigationMesh_ihg6t")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D" unique_id=1451891213]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7993774, 0, 0)
+gi_mode = 2
+use_collision = true
+collision_layer = 8
+collision_mask = 15
+size = Vector3(20, 0.1, 20)
+material = SubResource("StandardMaterial3D_ffy62")

@@ -2,16 +2,12 @@
 
 [ext_resource type="Script" uid="uid://vjc0thqqfq4i" path="res://src/data/consumable.gd" id="1_3t7nq"]
 [ext_resource type="Script" uid="uid://yotuo14bnvib" path="res://src/data/main_inventory.gd" id="1_jw7hd"]
-
-[sub_resource type="Resource" id="Resource_5rm31"]
-script = ExtResource("1_3t7nq")
-is_usable_on_field = true
-item_name = "Potion"
-metadata/_custom_type_script = "uid://vjc0thqqfq4i"
+[ext_resource type="Resource" uid="uid://bpm6vm28e1trb" path="res://database/item/potion.tres" id="2_r68rs"]
+[ext_resource type="Script" uid="uid://cen0l5ytwt6r0" path="res://src/data/equipment.gd" id="3_4f37i"]
 
 [resource]
 script = ExtResource("1_jw7hd")
-consumable_inventory = {
-SubResource("Resource_5rm31"): 5
-}
+consumable_inventory = Dictionary[ExtResource("1_3t7nq"), int]({
+ExtResource("2_r68rs"): 5
+})
 metadata/_custom_type_script = "uid://yotuo14bnvib"

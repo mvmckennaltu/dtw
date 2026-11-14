@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="HealHPEffect" format=3 uid="uid://cj55mw01jqy0v"]
+
+[ext_resource type="Script" uid="uid://b70788v2gu1ue" path="res://src/data/heal_hp_effect.gd" id="1_pxdsp"]
+
+[resource]
+script = ExtResource("1_pxdsp")
+metadata/_custom_type_script = "uid://b70788v2gu1ue"

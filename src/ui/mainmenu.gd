@@ -8,7 +8,11 @@ var current_option
 var menu_screens: Array[MenuScreenIdentifier]
 var menu_stack : Array[MenuScreen] = [MenuScreen.TOP]
 @onready var header_text = $MenuPanel/VBoxContainer/Header
+var selected_item: Item = null
+var selecting_item_target := false
 
+@onready var items_container: VBoxContainer = \
+	$MenuPanel/VBoxContainer/Content/ItemsMenu/ScrollContainer/VBoxContainer
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	visible = false
@@ -75,26 +79,37 @@ func return_to_previous_menu() -> void:
 	var previous_screen: MenuScreen = menu_stack.front()
 	show_screen(previous_screen)
 	
-func show_items():
-	var index = 0
-	var insert_index := 0
-	var values = PersistentInventory.consumables.values()
-	for child in $MenuPanel/VBoxContainer/Content/ItemsMenu/ScrollContainer/VBoxContainer.get_children():
-		if child.has_meta("Item"):
+func show_items() -> void:
+	selecting_item_target = false
+	selected_item = null
+
+	for child in items_container.get_children():
+		if child.has_meta("Item") or child.has_meta("ItemTarget"):
 			child.queue_free()
-	for item in PersistentInventory.get_items():
-		var button = Button.new()
-		
-		print(item.item_name)
-		button.text = item.item_name + ": " + str(values[index])
-		print(str(index))
-		index = index + 1
-		$MenuPanel/VBoxContainer/Content/ItemsMenu/ScrollContainer/VBoxContainer.add_child(button)
-		$MenuPanel/VBoxContainer/Content/ItemsMenu/ScrollContainer/VBoxContainer.move_child(button, insert_index)
+
+	var inventory: MainInventory = PersistentInventory.main_inventory
+
+	for item in inventory.consumable_inventory:
+		var amount: int = inventory.get_item_count(item)
+
+		if amount <= 0:
+			continue
+
+		var button := Button.new()
+		button.text = item.item_name + " x" + str(amount)
 		button.set_meta("Item", true)
-		insert_index = insert_index + 1
-		var first_item = $MenuPanel/VBoxContainer/Content/ItemsMenu/ScrollContainer/VBoxContainer.get_child(0)
-		first_item.grab_focus()
+
+		button.pressed.connect(
+			select_item_for_use.bind(item)
+		)
+
+		items_container.add_child(button)
+
+	# Give the first generated item keyboard/controller focus.
+	for child in items_container.get_children():
+		if child is BaseButton and not child.disabled:
+			child.grab_focus.call_deferred()
+			break
 func show_saccels():
 	for child in $MenuPanel/VBoxContainer/Content/SAccelMenu/VBoxContainer.get_children():
 		if child.has_meta("party_member_entry"):
@@ -199,6 +214,10 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	get_viewport().set_input_as_handled()
 
+	if selecting_item_target:
+		show_items()
+		return
+
 	if menu_stack.size() > 1:
 		return_to_previous_menu()
 	else:
@@ -271,3 +290,64 @@ func _on_equipment_back_pressed() -> void:
 
 func _on_chara_s_accel_back_pressed() -> void:
 	return_to_previous_menu()
+
+func select_item_for_use(item: Item) -> void:
+	selected_item = item
+	selecting_item_target = true
+
+	# Clear the old item buttons.
+	for child in items_container.get_children():
+		if child.has_meta("Item") or child.has_meta("ItemTarget"):
+			child.queue_free()
+
+	header_text.text = "Use " + item.item_name + " on who?"
+
+	# Generate a button for every party member.
+	for member in PersistentParty.party.members:
+		var button := Button.new()
+		button.text = member.definition.character_name
+		button.set_meta("ItemTarget", true)
+
+		button.pressed.connect(
+			use_item_on_character.bind(member)
+		)
+
+		items_container.add_child(button)
+
+	# Focus the first available character.
+	for child in items_container.get_children():
+		if child is BaseButton and not child.disabled:
+			child.grab_focus.call_deferred()
+			break
+func use_item_on_character(target: CharacterState) -> void:
+	if selected_item == null:
+		return
+
+	var inventory: MainInventory = PersistentInventory.main_inventory
+
+	# Make sure the item is still available.
+	if inventory.get_item_count(selected_item) <= 0:
+		return
+
+	# Construct the overworld item-use context.
+	var context := ItemUseContext.new()
+	context.mode = ItemUseContext.UseMode.OVERWORLD
+	context.target_state = target
+
+	# Apply the effect.
+	var successful := selected_item.item_use(context)
+
+	if not successful:
+		print("The item had no effect!")
+		return
+
+	# Consume one item only after successful use.
+	inventory.remove_item_from_inventory(selected_item, 1)
+
+	print(
+		"Used ", selected_item.item_name,
+		" on ", target.definition.character_name
+	)
+
+	# Return to the item list and refresh quantities.
+	show_items()
