@@ -91,6 +91,10 @@ window/stretch/aspect="expand"
 
 enabled=PackedStringArray("res://addons/dialogic/plugin.cfg", "res://addons/fgi/plugin.cfg", "res://addons/juicee/plugin.cfg", "res://addons/licenses/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/rubonnek.quest_manager/plugin.cfg")
 
+[global_group]
+
+player=""
+
 [input]
 
 ui_accept={

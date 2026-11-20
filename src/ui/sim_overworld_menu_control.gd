@@ -22,7 +22,7 @@ func _ready() -> void:
 	shop_list.hide()
 	$MainOverworldMenu/VBoxContainer/EnterDungeonButton.grab_focus()
 	print(recipe_list)
-
+	Dialogic.signal_event.connect(_on_dialogic_signal)
 func return_to_main():
 	shop_menu.hide()
 	main_menu.show()
@@ -180,6 +180,11 @@ func _on_sell_button_pressed() -> void:
 
 func _on_talk_button_pressed() -> void:
 	Dialogic.start("uid://cp1jt3vlkt1mo")
+	shop_menu.hide()
 
 func update_money():
 	$Money.text = "$" + str(PersistentParty.party.cura)
+func _on_dialogic_signal(arg):
+	if arg == "SimVictoriaJoins":
+		$ShopMenu.show()
+		$ShopMenu/VBoxContainer/TalkButton.grab_focus()

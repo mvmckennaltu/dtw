@@ -10,6 +10,7 @@
 script = ExtResource("5_uhif6")
 is_usable_on_field = null
 item_name = "Dingus"
+sell_price = null
 metadata/_custom_type_script = "uid://vjc0thqqfq4i"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sko5i"]
@@ -50,8 +51,10 @@ collision_layer = 8
 collision_mask = 15
 size = Vector3(1, 10, 20)
 
-[node name="Node3D" parent="." unique_id=114979189 instance=ExtResource("3_m5mbk")]
+[node name="Node3D" parent="." unique_id=114979189 node_paths=PackedStringArray("patrol_a", "patrol_b") instance=ExtResource("3_m5mbk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22052276, 0.87805444, -2.8297248)
+patrol_a = NodePath("../Node3D2")
+patrol_b = NodePath("../Node3D3")
 
 [node name="DungeonPlayer" parent="." unique_id=1457069709 instance=ExtResource("1_ncluu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0046635, 0)
@@ -90,3 +93,9 @@ collision_layer = 8
 collision_mask = 15
 size = Vector3(20, 0.1, 20)
 material = SubResource("StandardMaterial3D_ffy62")
+
+[node name="Node3D2" type="Node3D" parent="." unique_id=352218734]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7311997, 0, -4.508856)
+
+[node name="Node3D3" type="Node3D" parent="." unique_id=1172008599]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.94437, 0, -4.508856)

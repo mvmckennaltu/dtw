@@ -1,13 +1,18 @@
 [gd_scene format=3 uid="uid://1wwgf2v1j2t7"]
 
 [ext_resource type="Texture2D" uid="uid://dfkhd4xwkws2s" path="res://addons/fgi/fgi_logo.png" id="1_0bep3"]
+[ext_resource type="Script" uid="uid://clit0drlm3mk2" path="res://src/dungeon/dungeon_enemy.gd" id="1_qyhhb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qyhhb"]
 size = Vector3(0.5, 1, 0.5)
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_wskqe"]
+radius = 1.8824728
+
 [node name="DungeonEnemy" type="CharacterBody3D" unique_id=114979189]
 collision_layer = 2
 collision_mask = 15
+script = ExtResource("1_qyhhb")
 
 [node name="EnemyCollider" type="CollisionShape3D" parent="." unique_id=375470990]
 shape = SubResource("BoxShape3D_qyhhb")
@@ -24,4 +29,15 @@ collision_layer = 2
 collision_mask = 13
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyHitbox" unique_id=659216435]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0)
 shape = SubResource("BoxShape3D_qyhhb")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=211138204]
+
+[node name="SightRange" type="Area3D" parent="." unique_id=659361361]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SightRange" unique_id=1195646359]
+shape = SubResource("SphereShape3D_wskqe")
+
+[connection signal="body_entered" from="SightRange" to="." method="_on_sight_range_body_entered"]
+[connection signal="body_exited" from="SightRange" to="." method="_on_sight_range_body_exited"]

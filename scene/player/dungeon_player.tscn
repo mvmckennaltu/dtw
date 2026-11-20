@@ -12,7 +12,7 @@ size = Vector3(0.5, 1, 0.5)
 [sub_resource type="Resource" id="Resource_j2fop"]
 script = ExtResource("5_w8c53")
 
-[node name="DungeonPlayer" type="CharacterBody3D" unique_id=1457069709]
+[node name="DungeonPlayer" type="CharacterBody3D" unique_id=1457069709 groups=["player"]]
 collision_mask = 31
 script = ExtResource("1_602fi")
 

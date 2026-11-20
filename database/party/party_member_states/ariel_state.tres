@@ -12,21 +12,25 @@
 [sub_resource type="Resource" id="Resource_ff64c"]
 script = ExtResource("1_2jur0")
 item_name = "Aerie's Charm"
+sell_price = null
 metadata/_custom_type_script = "uid://cen0l5ytwt6r0"
 
 [sub_resource type="Resource" id="Resource_5rm31"]
 script = ExtResource("2_pxurq")
 item_name = "Heavens Uniform"
+sell_price = null
 metadata/_custom_type_script = "uid://vqc825akva8m"
 
 [sub_resource type="Resource" id="Resource_csoam"]
 script = ExtResource("5_xlhfm")
 item_name = "Crossbow"
+sell_price = null
 metadata/_custom_type_script = "uid://b6ea0wpdc3tt0"
 
 [sub_resource type="Resource" id="Resource_n6s1u"]
 script = ExtResource("5_xlhfm")
 item_name = "Dagger"
+sell_price = null
 metadata/_custom_type_script = "uid://b6ea0wpdc3tt0"
 
 [resource]
