@@ -29,9 +29,56 @@ PersistentParty="*uid://dcrw5abeyq8nx"
 
 [dialogic]
 
-directories/dch_directory={}
-directories/dtl_directory={}
+directories/dch_directory={
+"arielsim": "res://database/dialogue/characters/party/arielsim.dch",
+"satosim": "res://database/dialogue/characters/party/satosim.dch",
+"simshopkeep": "res://database/dialogue/characters/party/simshopkeep.dch",
+"victoriasim": "res://database/dialogue/characters/party/victoriasim.dch"
+}
+directories/dtl_directory={
+"shoptest": "res://database/dialogue/timelines/test/shoptest.dtl"
+}
 layout/style_directory={}
+variables={
+"VeilJoined": false
+}
+layout/style_list=[]
+layout/default_style="Default"
+text/letter_speed=0.01
+text/initial_text_reveal_skippable=true
+text/text_reveal_skip_delay=0.1
+text/advance_delay=0.1
+text/autoadvance_per_character_delay=0.1
+text/autoadvance_ignored_characters_enabled=true
+save/autosave_delay=60.0
+save/encryption_on_exports_only=true
+choices/autofocus_first=true
+choices/delay=0.2
+choices/reveal_delay=0
+choices/reveal_by_input=false
+animations/join_default_length=0.5
+animations/join_default_wait=true
+animations/leave_default_length=0.5
+animations/leave_default_wait=true
+animations/cross_fade_default_length=0.5
+event_default_overrides={
+"Call": {}
+}
+text/autopauses={}
+audio/channel_defaults={
+"": {
+"audio_bus": "",
+"fade_length": 0.0,
+"loop": false,
+"volume": 0.0
+},
+"music": {
+"audio_bus": "",
+"fade_length": 0.0,
+"loop": true,
+"volume": 0.0
+}
+}
 
 [display]
 

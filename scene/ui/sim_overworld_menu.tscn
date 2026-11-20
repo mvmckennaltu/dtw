@@ -46,16 +46,30 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="ShopMenu/VBoxContainer" unique_id=286846769]
 layout_mode = 2
-text = "The shop is currently under construction. Come back later in development!"
+text = "What would you like to do?"
 label_settings = SubResource("LabelSettings_sm6go")
 horizontal_alignment = 1
 autowrap_mode = 3
+
+[node name="BuyButton" type="Button" parent="ShopMenu/VBoxContainer" unique_id=1155347381]
+layout_mode = 2
+text = "Buy"
+
+[node name="SellButton" type="Button" parent="ShopMenu/VBoxContainer" unique_id=1310446428]
+visible = false
+layout_mode = 2
+text = "Sell"
+
+[node name="TalkButton" type="Button" parent="ShopMenu/VBoxContainer" unique_id=1217441858]
+layout_mode = 2
+text = "Talk"
 
 [node name="BackButton" type="Button" parent="ShopMenu/VBoxContainer" unique_id=1282002252]
 layout_mode = 2
 text = "Back"
 
 [node name="CraftingMenu" type="PanelContainer" parent="." unique_id=1486238702]
+visible = false
 custom_maximum_size = Vector2(200, 800)
 layout_mode = 0
 offset_right = 200.0
@@ -125,9 +139,54 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "No"
 
+[node name="ShopListMenu" type="PanelContainer" parent="." unique_id=1499514762]
+visible = false
+custom_maximum_size = Vector2(200, 800)
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 136.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ShopListMenu" unique_id=904745898]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ShopListMenu/VBoxContainer" unique_id=1022129882]
+layout_mode = 2
+text = "Shop"
+label_settings = SubResource("LabelSettings_sm6go")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label2" type="Label" parent="ShopListMenu/VBoxContainer" unique_id=1213099173]
+layout_mode = 2
+text = "Available Items"
+label_settings = SubResource("LabelSettings_sm6go")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ShopItems" type="VBoxContainer" parent="ShopListMenu/VBoxContainer" unique_id=1047029515]
+layout_mode = 2
+alignment = 1
+
+[node name="BackButton" type="Button" parent="ShopListMenu/VBoxContainer" unique_id=2033713975]
+layout_mode = 2
+text = "Back"
+
+[node name="Money" type="Label" parent="." unique_id=806188696]
+visible = false
+layout_mode = 0
+offset_left = 1215.0
+offset_top = 10.0
+offset_right = 1255.0
+offset_bottom = 33.0
+text = "$0"
+
 [connection signal="pressed" from="MainOverworldMenu/VBoxContainer/EnterDungeonButton" to="." method="_on_enter_dungeon_button_pressed"]
 [connection signal="pressed" from="MainOverworldMenu/VBoxContainer/SancButton" to="." method="_on_sanc_button_pressed"]
 [connection signal="pressed" from="MainOverworldMenu/VBoxContainer/ShopButton" to="." method="_on_shop_button_pressed"]
+[connection signal="pressed" from="ShopMenu/VBoxContainer/BuyButton" to="." method="_on_buy_button_pressed"]
+[connection signal="pressed" from="ShopMenu/VBoxContainer/SellButton" to="." method="_on_sell_button_pressed"]
+[connection signal="pressed" from="ShopMenu/VBoxContainer/TalkButton" to="." method="_on_talk_button_pressed"]
 [connection signal="pressed" from="ShopMenu/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="CraftingMenu/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="ConfirmContainer/VBoxContainer/HBoxContainer/ConfirmButton" to="." method="_on_confirm_craft_button_pressed"]
+[connection signal="pressed" from="ShopListMenu/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

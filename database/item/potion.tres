@@ -8,4 +8,6 @@ script = ExtResource("1_on34m")
 is_usable_on_field = true
 item_name = "Potion"
 item_effect = ExtResource("1_n8s57")
+buy_price = 50
+sell_price = 25
 metadata/_custom_type_script = "uid://vjc0thqqfq4i"

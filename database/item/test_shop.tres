@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ShopList" format=3 uid="uid://dqthd5p1fbs1w"]
+
+[ext_resource type="Script" uid="uid://h2mvba0m76fj" path="res://src/data/item.gd" id="1_r2b4n"]
+[ext_resource type="Resource" uid="uid://bpm6vm28e1trb" path="res://database/item/potion.tres" id="2_1q5y3"]
+[ext_resource type="Script" uid="uid://b5835lyepkxiu" path="res://src/data/shop_list.gd" id="2_v2e0a"]
+
+[resource]
+script = ExtResource("2_v2e0a")
+item_list = Dictionary[ExtResource("1_r2b4n"), int]({
+ExtResource("2_1q5y3"): 10
+})
+metadata/_custom_type_script = "uid://b5835lyepkxiu"

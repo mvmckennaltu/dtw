@@ -1,0 +1,23 @@
+if {VeilJoined} == false:
+	arielsim: Nice, to see you, keep!
+	simshopkeep: Nice to see you as well, Aerie. I have something important to tell you.
+	arielsim: And what might that be?
+	simshopkeep: I have met someone with abilities quite like yours.
+	satosim: They have an Guardian? Soul Accelerators and all?
+	simshopkeep: That is indeed what she called them.
+	arielsim: Well, we definitely need more help to fight off the Sinners? Any chance she's willing to help?
+	simshopkeep: She may be. Let me get her for you.
+	victoriasim: Ummm.... hello? My name is... Veil?
+	arielsim: Aerie. Nice to meet you, Veil. Care to join our party?
+	victoriasim: Sure.... just to make sure the system's working...
+	arielsim: System?
+	satosim: She's talking about the game's dialogue system. She chose to join so quickly because the dev demanded it to make sure her code's working.
+	arielsim: The hell are you on about?
+	satosim: ...
+	satosim: Fourth wall breaking aside, I'm glad you're willing to join us, Veil.
+	victoriasim: Thank you...
+	Veil has joined your party!
+	[signal arg="SimVictoriaJoins"]
+	set {VeilJoined} = true
+else:
+	simshopkeep: I wish the five of you the best of luck.
